@@ -2,7 +2,7 @@
   "name": "vue-admin-zenchn",
   "version": "1.0.0",
   "description": "Company admin template",
-  "author": "zhongmin <zhongmin@zenchn.com>",
+  "author": "kasa2010 <supergrass2000@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
