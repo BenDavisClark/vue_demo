@@ -34,38 +34,38 @@ export default new Router({
   routes: constantRouterMap
 })
 
-export const asyncRouterMap = [
-  {
-    path: '/video',
-    name: '地图',
-    component: (resolve) => require(['@/views/vehicle/index'], resolve)
-  },
-  {
-    path: '/vehicle',
-    name: '首页',
-    component: (resolve) => require(['@/views/layout/Layout'], resolve),
-    children: [{
-      path: 'menus',
-      name: '菜单管理',
-      component: (resolve) => require(['@/views/vehicle/menu'], resolve)
-    }, {
-      path: 'resources',
-      name: '资源管理',
-      component: (resolve) => require(['@/views/vehicle/test'], resolve)
-    }]
-  },
-  {
-    path: '/video',
-    name: '视频',
-    component: (resolve) => require(['@/views/layout/Layout'], resolve),
-    children: [{
-      path: 'menus',
-      name: '预览',
-      component: (resolve) => require(['@/views/vehicle/menu'], resolve)
-    }, {
-      path: 'resources',
-      name: '回看',
-      component: (resolve) => require(['@/views/vehicle/test'], resolve)
-    }]
-  }
-]
+// export const asyncRouterMap = [
+//   {
+//     path: '/video',
+//     name: '地图',
+//     component: (resolve) => require(['@/views/vehicle/index'], resolve)
+//   },
+//   {
+//     path: '/vehicle',
+//     name: '首页',
+//     component: (resolve) => require(['@/views/layout/Layout'], resolve),
+//     children: [{
+//       path: 'menus',
+//       name: '菜单管理',
+//       component: (resolve) => require(['@/views/vehicle/menu'], resolve)
+//     }, {
+//       path: 'resources',
+//       name: '资源管理',
+//       component: (resolve) => require(['@/views/vehicle/test'], resolve)
+//     }]
+//   },
+//   {
+//     path: '/video',
+//     name: '视频',
+//     component: (resolve) => require(['@/views/layout/Layout'], resolve),
+//     children: [{
+//       path: 'menus',
+//       name: '预览',
+//       component: (resolve) => require(['@/views/vehicle/menu'], resolve)
+//     }, {
+//       path: 'resources',
+//       name: '回看',
+//       component: (resolve) => require(['@/views/vehicle/test'], resolve)
+//     }]
+//   }
+// ]

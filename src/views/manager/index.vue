@@ -1,3 +1,3 @@
 <template>
-  <h1>edit</h1>
+  <h1>manager</h1>
 </template>

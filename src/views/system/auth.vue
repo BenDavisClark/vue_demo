@@ -1,3 +1,3 @@
 <template>
-  <h1>analyze</h1>
+  <h1>auth</h1>
 </template>

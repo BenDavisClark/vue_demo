@@ -14,7 +14,8 @@ router.beforeEach((to, from, next) => {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => {
           // const roles = 'admin'
-          const rowrouter = res.param
+          const rowrouter = res.data.param
+          console.log(rowrouter)
           store.dispatch('GenerateRoutes', { rowrouter }).then(() => {
             router.addRoutes(store.getters.addRouters)
             next({ ...to })

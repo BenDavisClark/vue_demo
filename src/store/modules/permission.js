@@ -1,5 +1,5 @@
-// import { constantRouterMap } from '@/router/index'
-import { asyncRouterMap, constantRouterMap } from '@/router/index'
+import { constantRouterMap } from '@/router/index'
+// import { asyncRouterMap, constantRouterMap } from '@/router/index'
 const _import = require('@/router/_import_component')
 
 /**
@@ -78,8 +78,6 @@ const permission = {
           }
           accessedRouters.push(userRoutesItem)
         }
-        console.log(asyncRouterMap)
-        // console.log(accessedRouters)
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })
