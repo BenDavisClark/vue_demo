@@ -23,5 +23,6 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .el-menu {
   min-height: 100%;
+  overflow-x: hidden;
 }
 </style>
