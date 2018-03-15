@@ -63,7 +63,7 @@ const permission = {
           userRoutesItem.path = userRoutes[i].url
           userRoutesItem.name = userRoutes[i].name
           userRoutesItem.component = (resolve) => require(['@/views/layout/Layout'], resolve)
-          if (userRoutes[i].children.length) {
+          if (userRoutes[i].children) {
             var childrenRoute = []
             for (var j = 0; j < userRoutes[i].children.length; j++) {
               var childrenRouteItem = {}
@@ -72,12 +72,21 @@ const permission = {
               var url = userRoutes[i].children[j].url
               childrenRouteItem.component = _import(path + '/' + url)
               childrenRoute.push(childrenRouteItem)
-              console.log(path + '/' + url)
             }
+            userRoutesItem.children = childrenRoute
+          } else {
+            userRoutesItem.redirect = userRoutes[i].url + '/index'
+            var childrenRoute = []
+            var childrenRouteItem = {}
+            childrenRouteItem.path = 'index'
+            childrenRouteItem.name = userRoutes[i].name
+            childrenRouteItem.component = _import(path + '/index')
+            childrenRoute.push(childrenRouteItem)
             userRoutesItem.children = childrenRoute
           }
           accessedRouters.push(userRoutesItem)
         }
+        console.log(accessedRouters)
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })
