@@ -62,6 +62,7 @@ const permission = {
           var path = userRoutes[i].url
           userRoutesItem.path = userRoutes[i].url
           userRoutesItem.name = userRoutes[i].name
+          userRoutesItem.noDropdown = userRoutes[i].noDropdown
           userRoutesItem.component = (resolve) => require(['@/views/layout/Layout'], resolve)
           if (userRoutes[i].children) {
             var childrenRoute = []
@@ -79,14 +80,12 @@ const permission = {
             var childrenRoute = []
             var childrenRouteItem = {}
             childrenRouteItem.path = 'index'
-            childrenRouteItem.name = userRoutes[i].name
             childrenRouteItem.component = _import(path + '/index')
             childrenRoute.push(childrenRouteItem)
             userRoutesItem.children = childrenRoute
           }
           accessedRouters.push(userRoutesItem)
         }
-        console.log(accessedRouters)
         commit('SET_ROUTERS', accessedRouters)
         resolve()
       })

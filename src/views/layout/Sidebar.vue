@@ -1,5 +1,5 @@
 <template>
-  <el-menu mode="vertical" theme="dark" :default-active="$route.path">
+  <el-menu mode="vertical" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :default-active="$route.path">
     <sidebar-item :routes='permission_routers'></sidebar-item>
   </el-menu>
 </template>
@@ -13,6 +13,9 @@ export default {
     ...mapGetters([
       'permission_routers'
     ])
+  },
+  created () {
+    console.log(this.permission_routers)
   }
 }
 </script>

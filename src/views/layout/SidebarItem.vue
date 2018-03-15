@@ -1,13 +1,13 @@
 <template>
   <div>
     <template v-for="item in routes">
-      <router-link v-if="!item.children" :to="item.path" :key="item.name">
-        <el-menu-item :index="item.path">
+      <router-link v-if="!item.hidden&&item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path" :key="item.name">
+        <el-menu-item :index="item.path+'/'+item.children[0].path">
           <span>{{item.name}}</span>
         </el-menu-item>
       </router-link>
 
-      <el-submenu v-else :index="item.name" :key="item.name">
+      <el-submenu v-if="!item.noDropdown&&!item.hidden" :index="item.name" :key="item.name">
         <template slot="title">
           <span>{{item.name}}</span>
         </template>

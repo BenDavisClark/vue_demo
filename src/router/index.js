@@ -20,6 +20,7 @@ export const constantRouterMap = [
   { path: '/404', component: _import('404'), hidden: true },
   {
     path: '/',
+    noDropdown: true,
     component: Layout,
     redirect: '/dashboard',
     name: 'Dashboard',
@@ -33,39 +34,3 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
-
-// export const asyncRouterMap = [
-//   {
-//     path: '/video',
-//     name: '地图',
-//     component: (resolve) => require(['@/views/vehicle/index'], resolve)
-//   },
-//   {
-//     path: '/vehicle',
-//     name: '首页',
-//     component: (resolve) => require(['@/views/layout/Layout'], resolve),
-//     children: [{
-//       path: 'menus',
-//       name: '菜单管理',
-//       component: (resolve) => require(['@/views/vehicle/menu'], resolve)
-//     }, {
-//       path: 'resources',
-//       name: '资源管理',
-//       component: (resolve) => require(['@/views/vehicle/test'], resolve)
-//     }]
-//   },
-//   {
-//     path: '/video',
-//     name: '视频',
-//     component: (resolve) => require(['@/views/layout/Layout'], resolve),
-//     children: [{
-//       path: 'menus',
-//       name: '预览',
-//       component: (resolve) => require(['@/views/vehicle/menu'], resolve)
-//     }, {
-//       path: 'resources',
-//       name: '回看',
-//       component: (resolve) => require(['@/views/vehicle/test'], resolve)
-//     }]
-//   }
-// ]
