@@ -13,9 +13,6 @@ export default {
     ...mapGetters([
       'permission_routers'
     ])
-  },
-  created () {
-    console.log(this.permission_routers)
   }
 }
 </script>

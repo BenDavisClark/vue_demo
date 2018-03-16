@@ -18,8 +18,9 @@ export function getInfo(token, accountId, account) {
 }
 
 export function logout() {
+  console.log('fuck')
   return fetch({
-    url: '/user/logout',
-    method: 'post'
+    url: '/rest/token/logout',
+    method: 'get'
   })
 }
