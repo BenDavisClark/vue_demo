@@ -1,3 +1,3 @@
 <template>
-  <h1>log</h1>
+  <h1>submenu1</h1>
 </template>

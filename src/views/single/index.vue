@@ -1,3 +1,3 @@
 <template>
-  <h1>auth</h1>
+  <h1>single</h1>
 </template>

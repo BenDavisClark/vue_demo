@@ -1,3 +1,3 @@
 <template>
-  <h1>member</h1>
+  <h1>submenu2</h1>
 </template>

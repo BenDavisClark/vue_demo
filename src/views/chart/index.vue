@@ -1,3 +1,3 @@
 <template>
-  <h1>manager</h1>
+  <h1>chart</h1>
 </template>
