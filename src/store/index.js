@@ -4,6 +4,7 @@ import app from './modules/app'
 import user from './modules/user'
 import permission from './modules/permission'
 import getters from './getters'
+import 'babel-polyfill'
 
 Vue.use(Vuex)
 
