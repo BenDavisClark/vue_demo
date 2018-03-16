@@ -1,35 +1,13 @@
 <template>
   <div class="app-container">
-    <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border fit highlight-current-row>
-      <el-table-column align="center" label='ID' width="95">
+    <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border fit stripe style="with:100%">
+      <el-table-column prop="orgName" label='分组名称' style="width:10%"></el-table-column>
+      <el-table-column prop="orgType" label="分组类型" style="width:25%"></el-table-column>
+      <el-table-column prop="parentName" label="所属上级分组" style="width:45%"></el-table-column>
+      <el-table-column label="操作" style="width:10%" align="center">
         <template slot-scope="scope">
-          {{scope.$index}}
-        </template>
-      </el-table-column>
-      <el-table-column label="Title">
-        <template slot-scope="scope">
-          {{scope.row.title}}
-        </template>
-      </el-table-column>
-      <el-table-column label="Author" width="110" align="center">
-        <template slot-scope="scope">
-          <span>{{scope.row.author}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Pageviews" width="110" align="center">
-        <template slot-scope="scope">
-          {{scope.row.pageviews}}
-        </template>
-      </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{scope.row.status}}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
-        <template slot-scope="scope">
-          <i class="el-icon-time"></i>
-          <span>{{scope.row.display_time}}</span>
+          <el-button size="small" :plain="true" type="primary" @click="edit(scope.row.org_id)">编辑</el-button>
+          <el-button size="small" :plain="true" type="danger" @click="remove(scope.row.org_id)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -46,16 +24,6 @@ export default {
       listLoading: true
     }
   },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
-  },
   created() {
     this.fetchData()
   },
@@ -63,9 +31,15 @@ export default {
     fetchData() {
       this.listLoading = true
       getList(this.listQuery).then(response => {
-        this.list = response.data.items
+        this.list = response.data
         this.listLoading = false
       })
+    },
+    edit: function (index) {
+      alert(index)
+    },
+    remove: function (index) {
+      alert(index)
     }
   }
 }
