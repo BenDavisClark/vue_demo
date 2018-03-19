@@ -13,6 +13,10 @@ export default {
     ...mapGetters([
       'permission_routers'
     ])
+    // 只使用本地router配置文件中的router
+    // routes() {
+    //   return this.$router.options.routes
+    // }
   }
 }
 </script>
