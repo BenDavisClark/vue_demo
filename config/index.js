@@ -24,6 +24,7 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     port: 8899,
+    host:'localhost',
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
