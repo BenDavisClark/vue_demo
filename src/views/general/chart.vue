@@ -1,3 +1,10 @@
 <template>
-  <h1>chart</h1>
+  <line-chart></line-chart>
 </template>
+<script>
+import lineChart from '@/components/Chart/lineChart'
+export default {
+  components : { lineChart }
+}
+</script>
+
