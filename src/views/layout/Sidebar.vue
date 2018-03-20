@@ -1,6 +1,6 @@
 <template>
   <div>
-    <toggle-side v-on:toggleSide="toggleSide"></toggle-side>
+    <toggle-side></toggle-side>
     <el-menu mode="vertical" :unique-opened=true background-color="#364150" text-color="#fff" :collapse="isCollapse" active-text-color="#ffd04b" :default-active="$route.path">
       <template v-for="item in permission_routers">
         <router-link v-if="!item.hidden&&item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path" :key="item.name">
@@ -50,12 +50,6 @@ export default {
     // routes() {
     //   return this.$router.options.routes
     // }
-  },
-  methods: {
-    toggleSide: function(){
-      this.isCollapse = !this.isCollapse
-      this.$emit('toggleSide')
-    }
   }
 }
 </script>
