@@ -1,14 +1,18 @@
 <template>
-  <el-menu mode="vertical" background-color="#364150" text-color="#fff" active-text-color="#ffd04b" :default-active="$route.path">
-    <sidebar-item :routes='permission_routers'></sidebar-item>
-  </el-menu>
+  <div>
+    <logo></logo>
+    <el-menu mode="vertical" background-color="#364150" text-color="#fff" active-text-color="#ffd04b" :default-active="$route.path">
+      <sidebar-item :routes='permission_routers'></sidebar-item>
+    </el-menu>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import SidebarItem from './SidebarItem'
+import Logo from './Logo'
 export default {
-  components: { SidebarItem },
+  components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
       'permission_routers'
@@ -24,6 +28,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .el-menu {
   min-height: 100%;
+  border-right: none;
   overflow-x: hidden;
 }
 </style>

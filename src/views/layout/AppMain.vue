@@ -1,5 +1,6 @@
 <template>
   <section class="app-main">
+    <levelbar></levelbar>
     <transition name="fade" mode="out-in">
       <router-view></router-view>
     </transition>
@@ -7,7 +8,9 @@
 </template>
 
 <script>
+import Levelbar from './Levelbar'
 export default {
+  components: { Levelbar },
   name: 'AppMain'
   // computed: {
   //   key() {

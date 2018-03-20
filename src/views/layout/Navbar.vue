@@ -1,7 +1,7 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
     <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    <levelbar></levelbar>
+    
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
@@ -10,10 +10,10 @@
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
         <router-link class='inlineBlock' to="/">
           <el-dropdown-item>
-            Home
+            首页
           </el-dropdown-item>
         </router-link>
-        <el-dropdown-item divided><span @click="logout" style="display:block;">LogOut</span></el-dropdown-item>
+        <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </el-menu>
@@ -21,12 +21,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Levelbar from './Levelbar'
 import Hamburger from '@/components/Hamburger'
 
 export default {
   components: {
-    Levelbar,
     Hamburger
   },
   computed: {
@@ -50,12 +48,14 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
     .navbar {
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        background: #2b3643;
+        line-height: 40px;
         border-radius: 0px !important;
+        border-bottom: none;
         .hamburger-container {
-            line-height: 58px;
-            height: 50px;
+            line-height: 48px;
+            height: 40px;
             float: left;
             padding: 0 10px;
         }
@@ -71,7 +71,7 @@ export default {
             color: red;
         }
         .avatar-container {
-            height: 50px;
+            height: 40px;
             display: inline-block;
             position: absolute;
             right: 35px;
@@ -80,8 +80,8 @@ export default {
                 margin-top: 5px;
                 position: relative;
                 .user-avatar {
-                    width: 40px;
-                    height: 40px;
+                    width: 30px;
+                    height: 30px;
                     border-radius: 10px;
                 }
                 .el-icon-caret-bottom {
