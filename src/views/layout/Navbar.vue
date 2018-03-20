@@ -1,7 +1,6 @@
 <template>
   <el-menu class="navbar" mode="horizontal">
-    <hamburger class="hamburger-container" :toggleClick="toggleSideBar" :isActive="sidebar.opened"></hamburger>
-    
+    <logo></logo>  
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
         <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
@@ -21,12 +20,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Hamburger from '@/components/Hamburger'
+import Logo from './Logo'
 
 export default {
-  components: {
-    Hamburger
-  },
+  components: { Logo },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -48,6 +45,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
     .navbar {
+        overflow: hidden;
         height: 40px;
         background: #2b3643;
         line-height: 40px;

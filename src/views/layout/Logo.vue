@@ -6,6 +6,8 @@
 <style lang="scss">
   .vue-logo {
     &-container {
+      width: 180px;
+      float: left;
       height: 40px;
       background: #2b3643;
     }
