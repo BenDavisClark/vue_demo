@@ -1,7 +1,7 @@
 <template>
   <div>
     <toggle-side></toggle-side>
-    <el-menu mode="vertical" :unique-opened=true background-color="#364150" text-color="#fff" :collapse="isCollapse" active-text-color="#ffd04b" :default-active="$route.path">
+    <el-menu mode="vertical" :unique-opened=true background-color="#364150" text-color="#fff" :collapse="isCollapse" active-text-color="#fff" :default-active="$route.path">
       <template v-for="item in permission_routers">
         <router-link v-if="!item.hidden&&item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path" :key="item.name">
           <el-menu-item :index="item.path+'/'+item.children[0].path">
@@ -60,16 +60,31 @@ export default {
   border-right: none;
   overflow-x: hidden;
 }
+
 .el-menu--collapse{
   width: 46px;
+  .el-menu-item .el-tooltip{
+  padding: 0 11px!important;
+  }
 }
-.el-menu-item{
+.el-menu--inline{
+  .el-menu-item{
+    padding-left: 45px!important;
+  }
+}
+
+.el-menu-item.is-active{
+  background: #36c6d3!important;
+}
+
+.el-menu-item, .el-submenu__title{
   padding-left: 11px!important;
+  margin-bottom: 10px;
+  height: 40px;
+  line-height: 40px;
 }
-.el-menu-item .el-tooltip{
- padding: 0 11px!important;
-}
-.el-submenu__title{
-  padding-left:11px!important;
+.el-submenu .el-menu-item{
+  height: 40px;
+  line-height: 40px;
 }
 </style>
