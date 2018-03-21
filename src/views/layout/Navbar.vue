@@ -3,7 +3,7 @@
     <logo></logo>  
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
-        <img class="user-avatar" :src="avatar+'?imageView2/1/w/80/h/80'">
+        <img class="user-avatar" src="../../assets/images/avatardefault.jpg">
         <i class="el-icon-caret-bottom"></i>
       </div>
       <el-dropdown-menu class="user-dropdown" slot="dropdown">
@@ -72,7 +72,7 @@ export default {
             height: 40px;
             display: inline-block;
             position: absolute;
-            right: 35px;
+            right: 25px;
             .avatar-wrapper {
                 cursor: pointer;
                 margin-top: 5px;
@@ -80,11 +80,11 @@ export default {
                 .user-avatar {
                     width: 30px;
                     height: 30px;
-                    border-radius: 10px;
+                    border-radius: 30px;
                 }
                 .el-icon-caret-bottom {
                     position: absolute;
-                    right: -20px;
+                    right: -5px;
                     top: 25px;
                     font-size: 12px;
                 }
