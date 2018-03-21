@@ -1,7 +1,7 @@
 <template>
   <div>
     <toggle-side></toggle-side>
-    <el-menu mode="vertical" :unique-opened=true background-color="#364150" text-color="#fff" :collapse="isCollapse" active-text-color="#fff" :default-active="$route.path">
+    <el-menu mode="vertical" class="sidemenu" :unique-opened=true background-color="#364150" text-color="#fff" :collapse="isCollapse" active-text-color="#fff" :default-active="$route.path">
       <template v-for="item in permission_routers">
         <router-link v-if="!item.hidden&&item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path" :key="item.name">
           <el-menu-item :index="item.path+'/'+item.children[0].path">
@@ -55,18 +55,29 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
+.sidemenu{
+  transition: none!important;
+}
 .el-menu {
   min-height: 100%;
   border-right: none;
   overflow-x: hidden;
 }
 
+// 菜单收缩
 .el-menu--collapse{
   width: 46px;
   .el-menu-item .el-tooltip{
   padding: 0 11px!important;
   }
 }
+
+// 浮动菜单
+.el-menu--popup .el-menu-item.is-active{
+  background: #3e4b5c!important;
+}
+
+// 菜单展开
 .el-menu--inline{
   .el-menu-item{
     padding-left: 45px!important;
@@ -77,9 +88,20 @@ export default {
   background: #36c6d3!important;
 }
 
+.el-submenu.is-active{
+  .el-submenu__title{
+   background: #36c6d3!important;
+  }
+  .el-menu-item.is-active {
+    background: #3e4b5c!important;
+  }
+}
+
+
 .el-menu-item, .el-submenu__title{
   padding-left: 11px!important;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   height: 40px;
   line-height: 40px;
 }
