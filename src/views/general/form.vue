@@ -20,13 +20,13 @@
           <el-form-item label="活动时间" required>
             <el-col :span="11">
               <el-form-item prop="date1">
-                <el-date-picker type="date" placeholder="选择日期" v-model="formData.date1" style="width: 100%;"></el-date-picker>
+                <el-date-picker type="date" id="date" placeholder="选择日期" v-model="formData.date1" style="width: 100%;"></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col class="line" :span="2">-</el-col>
+            <el-col class="line" :span="1">-</el-col>
             <el-col :span="11">
               <el-form-item prop="date2">
-                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="formData.date2" style="width: 100%;"></el-time-picker>
+                <el-time-picker type="fixed-time" id="time" placeholder="选择时间" v-model="formData.date2" style="width: 100%;"></el-time-picker>
               </el-form-item>
             </el-col>
           </el-form-item>
@@ -186,3 +186,9 @@
     }
   }
 </script>
+<style>
+  .line{
+    text-align: center
+  }
+</style>
+
