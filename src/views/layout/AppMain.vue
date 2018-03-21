@@ -19,3 +19,9 @@ export default {
   // }
 }
 </script>
+<style>
+ .app-main{
+   padding-top: 46px;
+ }
+</style>
+

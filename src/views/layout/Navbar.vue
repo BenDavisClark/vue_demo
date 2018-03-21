@@ -1,21 +1,23 @@
 <template>
-  <el-menu class="navbar" mode="horizontal">
-    <logo></logo>  
-    <el-dropdown class="avatar-container" trigger="click">
-      <div class="avatar-wrapper">
-        <img class="user-avatar" src="../../assets/images/avatardefault.jpg">
-        <i class="el-icon-caret-bottom"></i>
-      </div>
-      <el-dropdown-menu class="user-dropdown" slot="dropdown">
-        <router-link class='inlineBlock' to="/">
-          <el-dropdown-item>
-            首页
-          </el-dropdown-item>
-        </router-link>
-        <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
-  </el-menu>
+  <div class="headtopbar">
+    <el-menu class="navbar" mode="horizontal">
+      <logo></logo>  
+      <el-dropdown class="avatar-container" trigger="click">
+        <div class="avatar-wrapper">
+          <img class="user-avatar" src="../../assets/images/avatardefault.jpg">
+          <i class="el-icon-caret-bottom"></i>
+        </div>
+        <el-dropdown-menu class="user-dropdown" slot="dropdown">
+          <router-link class='inlineBlock' to="/">
+            <el-dropdown-item>
+              首页
+            </el-dropdown-item>
+          </router-link>
+          <el-dropdown-item divided><span @click="logout" style="display:block;">退出登录</span></el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </el-menu>
+  </div>
 </template>
 
 <script>
@@ -44,6 +46,13 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+    .headtopbar{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
     .navbar {
         overflow: hidden;
         height: 40px;
@@ -51,12 +60,6 @@ export default {
         line-height: 40px;
         border-radius: 0px !important;
         border-bottom: none;
-        .hamburger-container {
-            line-height: 48px;
-            height: 40px;
-            float: left;
-            padding: 0 10px;
-        }
         .errLog-container {
             display: inline-block;
             position: absolute;
