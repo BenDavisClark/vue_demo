@@ -32,7 +32,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <table-pagination>
+      <table-pagination v-if="pagishow">
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
@@ -66,7 +66,8 @@ export default {
       },
       list: null,
       listLoading: true,
-      currentPage:1
+      currentPage:1,
+      pagishow: false
     }
   },
   created() {
@@ -81,6 +82,7 @@ export default {
       getList(this.listQuery).then(response => {
         this.list = response.data
         this.listLoading = false
+        this.pagishow = true
       })
     },
     edit: function (index) {
