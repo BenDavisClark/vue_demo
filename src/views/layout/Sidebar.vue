@@ -5,14 +5,14 @@
       <template v-for="item in permission_routers">
         <router-link v-if="!item.hidden&&item.noDropdown&&item.children.length>0" :to="item.path+'/'+item.children[0].path" :key="item.name">
           <el-menu-item :index="item.path+'/'+item.children[0].path">
-            <icon-svg iconClass="homepage"></icon-svg>
+            <icon-svg :iconClass="item.icon"></icon-svg>
             <span slot="title">{{item.name}}</span>
           </el-menu-item>
         </router-link>
 
         <el-submenu v-if="!item.noDropdown&&!item.hidden" :index="item.path+'/'+item.children[0].path" :key="item.name">
           <template slot="title">
-            <icon-svg iconClass="coordinates"></icon-svg>
+            <icon-svg :iconClass="item.icon"></icon-svg>
             <span slot="title">{{item.name}}</span>
           </template>
           <template v-for="child in item.children">

@@ -62,6 +62,7 @@ const permission = {
           var path = userRoutes[i].url
           userRoutesItem.path = userRoutes[i].url
           userRoutesItem.name = userRoutes[i].name
+          userRoutesItem.icon = userRoutes[i].meta.icon
           userRoutesItem.noDropdown = userRoutes[i].noDropdown
           userRoutesItem.component = (resolve) => require(['@/views/layout/Layout'], resolve)
           if (userRoutes[i].children) {
