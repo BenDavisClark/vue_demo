@@ -102,8 +102,8 @@ export default {
   padding-left: 11px!important;
   margin-bottom: 5px;
   margin-top: 5px;
-  height: 40px;
-  line-height: 40px;
+  height: 46px;
+  line-height: 46px;
 }
 .el-submenu .el-menu-item{
   height: 40px;
