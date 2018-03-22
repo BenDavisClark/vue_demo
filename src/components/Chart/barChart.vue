@@ -4,7 +4,7 @@
 
 <script>
 let echarts = require('echarts/lib/echarts')
-require('echarts/lib/chart/line')
+require('echarts/lib/chart/bar')
 require('echarts/lib/component/tooltip')
 require('echarts/lib/component/title')
 
@@ -61,7 +61,7 @@ export default {
       })()
       this.chart.setOption({
         title: {
-          text: '折线图',
+          text: '柱状图',
           x: '20',
           top: '20',
           textStyle: {
@@ -99,7 +99,7 @@ export default {
         },
         series: [{
             data: this.sData,
-            type: 'line'
+            type: 'bar'
         }]
       })
     }
