@@ -71,6 +71,16 @@
             <el-input v-model.number="formData.age"></el-input>
           </el-form-item>
 
+          <!-- 单图上传 -->
+          <el-form-item label="单图上传">
+            <single-upload></single-upload>
+          </el-form-item>
+
+          <!-- 多图上传 -->
+          <el-form-item label="多图上传">
+            <muti-upload></muti-upload>
+          </el-form-item>
+
           <!-- 提交表单 -->
           <el-form-item>
             <el-button type="primary" @click="submitForm('userForm')">立即创建</el-button>
@@ -82,7 +92,10 @@
   </div>
 </template>
 <script>
+  import SingleUpload from '@/components/Upload/SingleUpload'
+  import MutiUpload from '@/components/Upload/MutiUpload'
   export default {
+    components: { SingleUpload, MutiUpload },
     data () {
       // 自定义校验规则
       var validatePass = (rule, value, callback) => {
