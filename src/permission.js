@@ -13,7 +13,6 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => {
-          // const roles = 'admin'
           const rowrouter = res.data.param
           store.dispatch('GenerateRoutes', { rowrouter }).then(() => {
             router.addRoutes(store.getters.addRouters)

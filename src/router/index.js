@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../views/layout/Layout'
 
-const _import = require('./_import_' + process.env.NODE_ENV)
+const _import = require('./_import_component')
 
 Vue.use(Router)
 
@@ -14,8 +14,8 @@ Vue.use(Router)
  * meta : `{ role: ['admin'] }`  will control the page role
  **/
 export const constantRouterMap = [
-  { path: '/login', component: _import('login/index'), hidden: true },
-  { path: '/404', component: _import('404'), hidden: true },
+  { path: '/login', component: _import('/login/index'), hidden: true },
+  { path: '/404', component: _import('/404'), hidden: true },
   {
     path: '/',
     noDropdown: true,
@@ -23,7 +23,7 @@ export const constantRouterMap = [
     redirect: '/dashboard',
     name: 'Dashboard',
     hidden: true,
-    children: [{ path: 'dashboard', component: _import('dashboard/index') }]
+    children: [{ path: 'dashboard', component: _import('/dashboard/index') }]
   }
 ]
 

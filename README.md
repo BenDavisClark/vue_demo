@@ -1,6 +1,6 @@
 # vue-admin-zenchn
 
-> Company admin template
+> A Vue.js project
 
 ## Build Setup
 

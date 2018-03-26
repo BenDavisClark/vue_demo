@@ -47,7 +47,7 @@ export default {
       return !this.$store.state.app.sidebar.opened
     }
     // 只使用本地router配置文件中的router
-    // routes() {
+    // routes () {
     //   return this.$router.options.routes
     // }
   }

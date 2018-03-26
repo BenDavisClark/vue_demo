@@ -15,10 +15,6 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
-function resolve (dir) {
-  return path.join(__dirname, '..', dir)
-}
-
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -72,7 +68,6 @@ const webpackConfig = merge(baseWebpackConfig, {
         : config.build.index,
       template: 'index.html',
       inject: true,
-      favicon: resolve('favicon.ico'),
       minify: {
         removeComments: true,
         collapseWhitespace: true,
