@@ -8,10 +8,9 @@
       <div class="main-container" :class="{widercontainer:!sidebar.opened}">
         <app-main></app-main>
       </div>
-    </div>  
+    </div>
   </div>
 </template>
-
 
 <script>
 import { Navbar, Sidebar, AppMain } from '@/views/layout'
@@ -24,7 +23,7 @@ export default {
     AppMain
   },
   computed: {
-    sidebar() {
+    sidebar () {
       return this.$store.state.app.sidebar
     }
   }

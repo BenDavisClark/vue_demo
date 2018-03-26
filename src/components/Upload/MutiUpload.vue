@@ -16,19 +16,19 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      imgLength: 1,  
+      imgLength: 1,
       dialogImageUrl: [],
       dialogVisible: false
     }
   },
   methods: {
-    handleRemove(file, fileList) {
+    handleRemove (file, fileList) {
       console.log(file, fileList)
     },
-    handlePictureCardPreview(file, fileList) {
-        console.log(fileList)
+    handlePictureCardPreview (file, fileList) {
+      console.log(fileList)
       this.dialogImageUrl.push(file.url)
       this.dialogVisible = true
     }
@@ -64,4 +64,3 @@ export default {
   }
 }
 </style>
-

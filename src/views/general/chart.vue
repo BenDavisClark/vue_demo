@@ -8,13 +8,12 @@
 import lineChart from '@/components/Chart/lineChart'
 import barChart from '@/components/Chart/barChart'
 export default {
-  components : { lineChart, barChart },
+  components: { lineChart, barChart },
   data () {
     return {
-      xData:['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      xData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
       sData: [820, 932, 901, 934, 1290, 1330, 1320]
     }
   }
 }
 </script>
-

@@ -28,6 +28,7 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    useEslint: true,
     proxyTable: {
       // 真实数据接口代理
       // '/rest': {

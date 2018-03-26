@@ -1,7 +1,7 @@
 import fetch from '@/utils/fetch'
 import Qs from 'qs'
 
-export function login(username, password) {
+export function login (username, password) {
   return fetch({
     url: '/rest/token/login',
     method: 'post',
@@ -9,7 +9,7 @@ export function login(username, password) {
   })
 }
 
-export function getInfo(token, accountId, account) {
+export function getInfo (token, accountId, account) {
   return fetch({
     url: '/rest/token/roleAuth',
     method: 'post',
@@ -17,7 +17,7 @@ export function getInfo(token, accountId, account) {
   })
 }
 
-export function logout() {
+export function logout () {
   console.log('fuck')
   return fetch({
     url: '/rest/token/logout',

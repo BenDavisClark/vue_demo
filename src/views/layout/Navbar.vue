@@ -1,7 +1,7 @@
 <template>
   <div class="headtopbar">
     <el-menu class="navbar" mode="horizontal">
-      <logo></logo>  
+      <logo></logo>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img class="user-avatar" src="../../assets/images/avatardefault.jpg">
@@ -33,12 +33,12 @@ export default {
     ])
   },
   methods: {
-    toggleSideBar() {
+    toggleSideBar () {
       this.$store.dispatch('ToggleSideBar')
     },
-    logout() {
+    logout () {
       this.$store.dispatch('LogOut').then(() => {
-        location.reload()  // 为了重新实例化vue-router对象 避免bug
+        location.reload()
       })
     }
   }
@@ -95,4 +95,3 @@ export default {
         }
     }
 </style>
-

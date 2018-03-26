@@ -48,7 +48,7 @@ export default {
       // this.getMarker()
     },
     rerender: function () {
-      this.$store.commit('SET_CHOOSEN', '')
+      this.$store.commit('SECHOOSEN', '')
       this.map.clearMap()
       this.initMap()
     },
@@ -57,32 +57,32 @@ export default {
       let AMap = window.AMap
       var selected = this.selected
       var that = this
-      this.axios.post('/api/post/getrestaurant', {selected: selected}).then((res) => {
-        var data = res.data
-        that.$store.commit('SET_RESTAURANT', data)
-        var pointmarker = []
-        for (let i = 0; i < data.length; i++) {
-          var resname = data[i].resname
-          var point = new AMap.Marker({
-            position: data[i].lnglat.split(','),
-            icon: 'static/mark.png',
-            offset: new AMap.Pixel(-15, -15),
-            animation: 'AMAP_ANIMATION_DROP',
-            title: resname
-          })
-          point.on('click', function () {
-            alert(data[i].resname)
-          })
-          pointmarker.push(
-            point
-          )
-        }
-        that.markers = pointmarker
-        that.count = pointmarker.length
-        setTimeout(() => {
-           that.addCluster() 
-        },1000)
-      })
+      this.axios
+        .post('/api/post/getrestaurant', { selected: selected })
+        .then(res => {
+          var data = res.data
+          that.$store.commit('SET_RESTAURANT', data)
+          var pointmarker = []
+          for (let i = 0; i < data.length; i++) {
+            var resname = data[i].resname
+            var point = new AMap.Marker({
+              position: data[i].lnglat.split(','),
+              icon: 'static/mark.png',
+              offset: new AMap.Pixel(-15, -15),
+              animation: 'AMAP_ANIMATION_DROP',
+              title: resname
+            })
+            point.on('click', function () {
+              alert(data[i].resname)
+            })
+            pointmarker.push(point)
+          }
+          that.markers = pointmarker
+          that.count = pointmarker.length
+          setTimeout(() => {
+            that.addCluster()
+          }, 1000)
+        })
       if (this.$store.state.res.choose) {
         var index = this.$store.state.res.choose - 1
         var item = this.$store.state.res.restaurant[index]
@@ -110,7 +110,9 @@ export default {
       var borderColor = 'hsla(' + Hue + ',100%,40%,1)'
       var shadowColor = 'hsla(' + Hue + ',100%,50%,1)'
       div.style.backgroundColor = bgColor
-      var size = Math.round(30 + Math.pow(context.count / this.count, 1 / 5) * 20)
+      var size = Math.round(
+        30 + Math.pow(context.count / this.count, 1 / 5) * 20
+      )
       div.style.width = div.style.height = size + 'px'
       div.style.border = 'solid 1px ' + borderColor
       div.style.borderRadius = size / 2 + 'px'
@@ -127,20 +129,23 @@ export default {
 }
 </script>
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
 }
-html,body{
+html,
+body {
   height: 100%;
 }
 #app {
   height: 100%;
 }
-.amap-page-container,.mapcontainer,.amap-container {
+.amap-page-container,
+.mapcontainer,
+.amap-container {
   height: 800px;
 }
-.select-container{
+.select-container {
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -153,13 +158,13 @@ html,body{
   width: auto;
   border: none;
   background: #fff;
-  border-radius: 0!important;
+  border-radius: 0 !important;
   outline: none;
   -webkit-appearance: none;
 }
-.select-area option{
+.select-area option {
   display: block;
   text-align: center;
-  border-radius: none!important;
+  border-radius: none !important;
 }
 </style>

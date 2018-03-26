@@ -24,4 +24,3 @@ export default {
    padding-top: 46px;
  }
 </style>
-

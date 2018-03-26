@@ -4,38 +4,38 @@ const TokenKey = 'Admin-Token'
 const AccountId = 'Account-ID'
 const AccountName = 'AccountName'
 
-export function getToken() {
+export function getToken () {
   return Cookies.get(TokenKey)
 }
 
-export function setToken(token) {
+export function setToken (token) {
   return Cookies.set(TokenKey, token)
 }
 
-export function removeToken() {
+export function removeToken () {
   return Cookies.remove(TokenKey)
 }
 
-export function getID() {
+export function getID () {
   return Cookies.get(AccountId)
 }
 
-export function setID(id) {
+export function setID (id) {
   return Cookies.set(AccountId, id)
 }
 
-export function removeID() {
+export function removeID () {
   return Cookies.remove(AccountId)
 }
 
-export function getAccount() {
+export function getAccount () {
   return Cookies.get(AccountName)
 }
 
-export function setAccount(name) {
+export function setAccount (name) {
   return Cookies.set(AccountName, name)
 }
 
-export function removeAccount() {
+export function removeAccount () {
   return Cookies.remove(AccountName)
 }

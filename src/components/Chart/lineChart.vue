@@ -33,32 +33,25 @@ export default {
       type: Array
     }
   },
-  data() {
+  data () {
     return {
       chart: null
     }
   },
-  mounted() {
+  mounted () {
     this.initChart()
     this.chart = null
   },
-  beforeDestroy() {
+  beforeDestroy () {
     if (!this.chart) {
-      return;
+      return
     }
     this.chart.dispose()
     this.chart = null
   },
   methods: {
-    initChart() {
+    initChart () {
       this.chart = echarts.init(document.getElementById(this.id))
-      const xData = (function() {
-        const data = [];
-        for (let i = 1; i < 13; i++) {
-          data.push(i + 'month')
-        }
-        return data
-      })()
       this.chart.setOption({
         title: {
           text: '折线图',
@@ -91,15 +84,15 @@ export default {
         },
         calculable: true,
         xAxis: {
-            type: 'category',
-            data: this.xData
+          type: 'category',
+          data: this.xData
         },
         yAxis: {
-            type: 'value'
+          type: 'value'
         },
         series: [{
-            data: this.sData,
-            type: 'line'
+          data: this.sData,
+          type: 'line'
         }]
       })
     }

@@ -12,29 +12,29 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      imageUrl: ""
+      imageUrl: ''
     }
   },
   methods: {
-    handleAvatarSuccess(res, file) {
+    handleAvatarSuccess (res, file) {
       this.imageUrl = URL.createObjectURL(file.raw)
     },
-    beforeAvatarUpload(file) {
-      const isJPG = file.type === "image/jpeg" || "image/jpg" || "image/jpg"
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg' || 'image/jpg' || 'image/jpg'
       const isLt2M = file.size / 1024 / 1024 < 2
 
       if (!isJPG) {
-        this.$message.error("上传头像图片只能是 JPG 格式!")
+        this.$message.error('上传头像图片只能是 JPG 格式!')
       }
       if (!isLt2M) {
-        this.$message.error("上传头像图片大小不能超过 2MB!")
+        this.$message.error('上传头像图片大小不能超过 2MB!')
       }
       return isJPG && isLt2M
     }
   }
-};
+}
 </script>
 <style>
 .avatar-uploader .el-upload {

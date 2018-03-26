@@ -6,7 +6,7 @@
 <script>
 export default {
   methods: {
-    toggleSide: function(){
+    toggleSide: function () {
       this.$store.dispatch('ToggleSideBar')
     }
   }
@@ -26,4 +26,3 @@ export default {
       width: 46px;
   }
 </style>
-

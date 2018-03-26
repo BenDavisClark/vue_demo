@@ -45,7 +45,7 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes({ commit }, data) {
+    GenerateRoutes ({ commit }, data) {
       return new Promise(resolve => {
         // const { roles } = data
         // let accessedRouters
@@ -65,10 +65,10 @@ const permission = {
           userRoutesItem.icon = userRoutes[i].meta.icon
           userRoutesItem.noDropdown = userRoutes[i].noDropdown
           userRoutesItem.component = (resolve) => require(['@/views/layout/Layout'], resolve)
+          var childrenRoute = []
+          var childrenRouteItem = {}
           if (userRoutes[i].children) {
-            var childrenRoute = []
             for (var j = 0; j < userRoutes[i].children.length; j++) {
-              var childrenRouteItem = {}
               childrenRouteItem.path = userRoutes[i].children[j].url
               childrenRouteItem.name = userRoutes[i].children[j].name
               var url = userRoutes[i].children[j].url
@@ -78,8 +78,6 @@ const permission = {
             userRoutesItem.children = childrenRoute
           } else {
             userRoutesItem.redirect = userRoutes[i].url + '/index'
-            var childrenRoute = []
-            var childrenRouteItem = {}
             childrenRouteItem.path = 'index'
             childrenRouteItem.component = _import(path + '/index')
             childrenRoute.push(childrenRouteItem)

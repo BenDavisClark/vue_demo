@@ -36,14 +36,14 @@ export default {
   components: { IconSvg, ToggleSide },
   data () {
     return {
-      //isCollapse: !this.$store.state.app.sidebar
+      // isCollapse: !this.$store.state.app.sidebar
     }
   },
   computed: {
     ...mapGetters([
       'permission_routers'
     ]),
-    isCollapse() {
+    isCollapse () {
       return !this.$store.state.app.sidebar.opened
     }
     // 只使用本地router配置文件中的router
@@ -96,7 +96,6 @@ export default {
     background: #3e4b5c!important;
   }
 }
-
 
 .el-menu-item, .el-submenu__title{
   padding-left: 11px!important;

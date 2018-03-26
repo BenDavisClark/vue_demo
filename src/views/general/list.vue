@@ -58,7 +58,7 @@ export default {
     TableSearch,
     TablePagination
   },
-  data() {
+  data () {
     return {
       listQuery: {
         user: '',
@@ -66,18 +66,18 @@ export default {
       },
       list: null,
       listLoading: true,
-      currentPage:1,
+      currentPage: 1,
       pagishow: false
     }
   },
-  created() {
+  created () {
     this.fetchData()
   },
   methods: {
     onSubmit: function () {
-      console.log('submit!');
+      console.log('submit!')
     },
-    fetchData() {
+    fetchData () {
       this.listLoading = true
       getList(this.listQuery).then(response => {
         this.list = response.data
@@ -91,11 +91,11 @@ export default {
     remove: function (index) {
       alert(index)
     },
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+    handleSizeChange (val) {
+      console.log(`每页 ${val} 条`)
     },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+    handleCurrentChange (val) {
+      console.log(`当前页: ${val}`)
     }
   }
 }
