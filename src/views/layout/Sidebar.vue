@@ -31,7 +31,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ToggleSide from './ToggleSide'
-import IconSvg from '@/components/Icon-svg/index'
+import IconSvg from '@/components/Icon/index'
 export default {
   components: { IconSvg, ToggleSide },
   data () {

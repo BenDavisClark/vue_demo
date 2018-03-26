@@ -65,10 +65,10 @@ const permission = {
           userRoutesItem.icon = userRoutes[i].meta.icon
           userRoutesItem.noDropdown = userRoutes[i].noDropdown
           userRoutesItem.component = (resolve) => require(['@/views/layout/Layout'], resolve)
-          var childrenRoute = []
-          var childrenRouteItem = {}
           if (userRoutes[i].children) {
+            let childrenRoute = []
             for (var j = 0; j < userRoutes[i].children.length; j++) {
+              let childrenRouteItem = {}
               childrenRouteItem.path = userRoutes[i].children[j].url
               childrenRouteItem.name = userRoutes[i].children[j].name
               var url = userRoutes[i].children[j].url
@@ -77,6 +77,8 @@ const permission = {
             }
             userRoutesItem.children = childrenRoute
           } else {
+            let childrenRoute = []
+            let childrenRouteItem = {}
             userRoutesItem.redirect = userRoutes[i].url + '/index'
             childrenRouteItem.path = 'index'
             childrenRouteItem.component = _import(path + '/index')

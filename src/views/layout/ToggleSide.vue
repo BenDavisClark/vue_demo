@@ -4,7 +4,9 @@
   </div>
 </template>
 <script>
+import IconSvg from '@/components/Icon/index'
 export default {
+  components: { IconSvg },
   methods: {
     toggleSide: function () {
       this.$store.dispatch('ToggleSideBar')

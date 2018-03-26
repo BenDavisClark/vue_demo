@@ -27,8 +27,10 @@
 
 <script>
 import { isvalidUsername } from '@/utils/validate'
+import IconSvg from '@/components/Icon/index'
 
 export default {
+  components: { IconSvg },
   name: 'login',
   data () {
     const validateUsername = (rule, value, callback) => {

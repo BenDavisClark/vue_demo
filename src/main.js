@@ -4,7 +4,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
 import store from './store'
-import '@/icons'
 import '@/permission' // 权限
 import 'babel-polyfill'
 
