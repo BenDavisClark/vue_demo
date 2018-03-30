@@ -16,6 +16,7 @@ router.beforeEach((to, from, next) => {
           const roles = [res.role]
           store.dispatch('GenerateLocalRoutes', { roles }).then(() => {
             router.addRoutes(store.getters.addRouters)
+            next({ ...to })
           })
         })
       } else {

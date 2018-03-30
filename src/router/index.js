@@ -48,12 +48,14 @@ export const asyncRouterMap = [
     noDropdown: true,
     component: Layout,
     redirect: 'noredirect',
-    children: [{path: 'index', component: _import('/single/index'), name: 'single', meta: { title: '单一菜单', icon: 'homepage' }}]
+    children: [{path: 'index', component: _import('/single/index'), name: '单一菜单', meta: { title: '单一菜单', icon: 'homepage' }}]
   },
   {
     path: '/multiple',
     component: Layout,
-    redirect: '/permission/submenu1',
+    name: '多级菜单',
+    redirect: '/multiple/submenu1',
+    meta: { title: '多级菜单', icon: 'manage' },
     children: [
       {
         path: 'submenu1',
@@ -61,7 +63,6 @@ export const asyncRouterMap = [
         name: 'submenu1',
         meta: {
           title: '子菜单1',
-          icon: 'manager',
           roles: ['admin']
         }
       },
@@ -71,7 +72,6 @@ export const asyncRouterMap = [
         name: 'submenu2',
         meta: {
           title: '子菜单2',
-          icon: 'manager',
           roles: ['admin']
         }
       },
@@ -81,7 +81,6 @@ export const asyncRouterMap = [
         name: 'submenu3',
         meta: {
           title: '子菜单1',
-          icon: 'manager',
           roles: ['admin']
         }
       }
@@ -90,16 +89,16 @@ export const asyncRouterMap = [
   {
     path: '/system',
     component: Layout,
-    redirect: '/system/index',
-    // meta: { roles: ['admin'] }, // 可以再根菜单中设置权限
+    noDropdown: true,
+    redirect: 'noredirect',
     children: [
       {
         path: 'index',
         component: _import('/system/index'),
-        name: 'system',
+        name: '系统管理',
         meta: {
           title: 'system',
-          icon: 'manager',
+          icon: 'setup',
           roles: ['admin'] // 可以只在子菜单中设置权限
         }
       }
