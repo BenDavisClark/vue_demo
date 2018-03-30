@@ -11,11 +11,8 @@ export function login (username, password) {
 
 export function getInfo (token, id, account) {
   return fetch({
-    url: '/rest/token/userRole',
+    url: '/rest/token/roleAuth',
     method: 'post',
-    // params: {
-    //   token: token, account: account
-    // }
     data: Qs.stringify({ token: token, JSESSIONID: id, account: account })
   })
 }
