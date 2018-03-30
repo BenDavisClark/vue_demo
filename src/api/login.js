@@ -9,16 +9,18 @@ export function login (username, password) {
   })
 }
 
-export function getInfo (token, accountId, account) {
+export function getInfo (token, account) {
   return fetch({
-    url: '/rest/token/roleAuth',
+    url: '/rest/token/userRole',
     method: 'post',
-    data: Qs.stringify({ token: token, accountId: accountId, account: account })
+    // params: {
+    //   token: token, account: account
+    // }
+    data: Qs.stringify({ token: token, account: account })
   })
 }
 
 export function logout () {
-  console.log('fuck')
   return fetch({
     url: '/rest/token/logout',
     method: 'get'

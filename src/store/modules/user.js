@@ -55,7 +55,7 @@ const user = {
     // 获取用户信息
     GetInfo ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token, state.accountId, state.account).then(response => {
+        getInfo(state.token, state.account).then(response => {
           // const data = response
           commit('SET_ROLES', 'admin')
           // commit('SET_ROLES', data.role)
