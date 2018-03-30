@@ -8,18 +8,19 @@ Vue.use(Router)
 
 /**
 * hidden: true                   如果设置 `hidden:true` 将不在侧边栏上显示(默认是false)
-* alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
-*                                if not set alwaysShow, only more than one route under the children
-*                                it will becomes nested mode, otherwise not show the root menu
-* redirect: noredirect           if `redirect:noredirect` will no redirct in the breadcrumb
-* name:'router-name'             the name is used by <keep-alive> (must set!!!)
+* alwaysShow: true               如果设置 true, 将一直显示, 不管子菜单的个数
+*                                如果未设置, 只有多于1个子菜单时才变为嵌套模式，否则不显示
+* redirect: noredirect           如果设置 `redirect:noredirect` 将不在面包屑导航中显示
+* name:'router-name'             该名称将用来设置 <keep-alive> (必需设置!!!)
 * meta : {
-    roles: ['admin','editor']     will control the page roles (you can set multiple roles)
-    title: 'title'               the name show in submenu and breadcrumb (recommend set)
-    icon: 'svg-name'             the icon show in the sidebar,
-    noCache: true                if fasle ,the page will no be cached(default is false)
+    roles: ['admin','editor']    根据角色控制页面权限 (可以设置多个角色)
+    title: 'title'               该名称用来设置子菜单和面包屑导航
+    icon: 'svg-name'             侧边栏上的小图标,
+    noCache: true                页面是否缓存，默认为false，缓存
   }
 **/
+
+// 不需要权限的路由表
 export const constantRouterMap = [
   { path: '/login', component: _import('/login/index'), hidden: true },
   { path: '/404', component: _import('/404'), hidden: true },
@@ -40,368 +41,71 @@ export default new Router({
   routes: constantRouterMap
 })
 
-// export const asyncRouterMap = [
-//   {
-//     path: '/permission',
-//     component: Layout,
-//     redirect: '/permission/index',
-//     meta: { roles: ['admin'] }, // you can set roles in root nav
-//     children: [
-//       {
-//         path: 'index',
-//         component: _import('permission/index'),
-//         name: 'permission',
-//         meta: {
-//           title: 'permission',
-//           icon: 'lock',
-//           roles: ['admin'] // or you can only set roles in sub nav
-//         }
-//       }
-//     ]
-//   },
 
-//   {
-//     path: '/icon',
-//     component: Layout,
-//     children: [
-//       {
-//         path: 'index',
-//         component: _import('svg-icons/index'),
-//         name: 'icons',
-//         meta: { title: 'icons', icon: 'icon', noCache: true }
-//       }
-//     ]
-//   },
+// 需要根据角色过滤权限的路由表
+export const asyncRouterMap = [
+  {
+    path: '/single',
+    noDropdown: true,
+    component: Layout,
+    redirect: 'noredirect',
+    children: [{ path: 'index', component: _import('/single/index'), name: 'single', meta: { title: '单一菜单', icon: 'homepage' }}]
+  },
+  {
+    path: '/multiple',
+    component: Layout,
+    redirect: '/permission/submenu1',
+    children: [
+      {
+        path: 'submenu1',
+        component: _import('/multiple/submenu1'),
+        name: 'submenu1',
+        meta: {
+          title: '子菜单1',
+          icon: 'manager',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'submenu2',
+        component: _import('/multiple/submenu2'),
+        name: 'submenu2',
+        meta: {
+          title: '子菜单2',
+          icon: 'manager',
+          roles: ['admin']
+        }
+      },
+      {
+        path: 'submenu3',
+        component: _import('/multiple/submenu3'),
+        name: 'submenu3',
+        meta: {
+          title: '子菜单1',
+          icon: 'manager',
+          roles: ['admin']
+        }
+      }
+    ]
+  },
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/index',
+    // meta: { roles: ['admin'] }, // 可以再根菜单中设置权限
+    children: [
+      {
+        path: 'index',
+        component: _import('permission/index'),
+        name: 'permission',
+        meta: {
+          title: 'permission',
+          icon: 'lock',
+          roles: ['admin'] // 可以只在子菜单中设置权限
+        }
+      }
+    ]
+  },
 
-//   {
-//     path: '/components',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     name: 'component-demo',
-//     meta: {
-//       title: 'components',
-//       icon: 'component'
-//     },
-//     children: [
-//       {
-//         path: 'tinymce',
-//         component: _import('components-demo/tinymce'),
-//         name: 'tinymce-demo',
-//         meta: { title: 'tinymce' }
-//       },
-//       {
-//         path: 'markdown',
-//         component: _import('components-demo/markdown'),
-//         name: 'markdown-demo',
-//         meta: { title: 'markdown' }
-//       },
-//       {
-//         path: 'json-editor',
-//         component: _import('components-demo/jsonEditor'),
-//         name: 'jsonEditor-demo',
-//         meta: { title: 'jsonEditor' }
-//       },
-//       {
-//         path: 'dnd-list',
-//         component: _import('components-demo/dndList'),
-//         name: 'dndList-demo',
-//         meta: { title: 'dndList' }
-//       },
-//       {
-//         path: 'splitpane',
-//         component: _import('components-demo/splitpane'),
-//         name: 'splitpane-demo',
-//         meta: { title: 'splitPane' }
-//       },
-//       {
-//         path: 'avatar-upload',
-//         component: _import('components-demo/avatarUpload'),
-//         name: 'avatarUpload-demo',
-//         meta: { title: 'avatarUpload' }
-//       },
-//       {
-//         path: 'dropzone',
-//         component: _import('components-demo/dropzone'),
-//         name: 'dropzone-demo',
-//         meta: { title: 'dropzone' }
-//       },
-//       {
-//         path: 'sticky',
-//         component: _import('components-demo/sticky'),
-//         name: 'sticky-demo',
-//         meta: { title: 'sticky' }
-//       },
-//       {
-//         path: 'count-to',
-//         component: _import('components-demo/countTo'),
-//         name: 'countTo-demo',
-//         meta: { title: 'countTo' }
-//       },
-//       {
-//         path: 'mixin',
-//         component: _import('components-demo/mixin'),
-//         name: 'componentMixin-demo',
-//         meta: { title: 'componentMixin' }
-//       },
-//       {
-//         path: 'back-to-top',
-//         component: _import('components-demo/backToTop'),
-//         name: 'backToTop-demo',
-//         meta: { title: 'backToTop' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/charts',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     name: 'charts',
-//     meta: {
-//       title: 'charts',
-//       icon: 'chart'
-//     },
-//     children: [
-//       {
-//         path: 'keyboard',
-//         component: _import('charts/keyboard'),
-//         name: 'keyboardChart',
-//         meta: { title: 'keyboardChart', noCache: true }
-//       },
-//       {
-//         path: 'line',
-//         component: _import('charts/line'),
-//         name: 'lineChart',
-//         meta: { title: 'lineChart', noCache: true }
-//       },
-//       {
-//         path: 'mixchart',
-//         component: _import('charts/mixChart'),
-//         name: 'mixChart',
-//         meta: { title: 'mixChart', noCache: true }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/example',
-//     component: Layout,
-//     redirect: '/example/table/complex-table',
-//     name: 'example',
-//     meta: {
-//       title: 'example',
-//       icon: 'example'
-//     },
-//     children: [
-//       {
-//         path: '/example/table',
-//         component: _import('example/table/index'),
-//         redirect: '/example/table/complex-table',
-//         name: 'Table',
-//         meta: {
-//           title: 'Table',
-//           icon: 'table'
-//         },
-//         children: [
-//           {
-//             path: 'dynamic-table',
-//             component: _import('example/table/dynamicTable/index'),
-//             name: 'dynamicTable',
-//             meta: { title: 'dynamicTable' }
-//           },
-//           {
-//             path: 'drag-table',
-//             component: _import('example/table/dragTable'),
-//             name: 'dragTable',
-//             meta: { title: 'dragTable' }
-//           },
-//           {
-//             path: 'inline-edit-table',
-//             component: _import('example/table/inlineEditTable'),
-//             name: 'inlineEditTable',
-//             meta: { title: 'inlineEditTable' }
-//           },
-//           {
-//             path: 'tree-table',
-//             component: _import('example/table/treeTable/treeTable'),
-//             name: 'treeTableDemo',
-//             meta: { title: 'treeTable' }
-//           },
-//           {
-//             path: 'custom-tree-table',
-//             component: _import('example/table/treeTable/customTreeTable'),
-//             name: 'customTreeTableDemo',
-//             meta: { title: 'customTreeTable' }
-//           },
-//           {
-//             path: 'complex-table',
-//             component: _import('example/table/complexTable'),
-//             name: 'complexTable',
-//             meta: { title: 'complexTable' }
-//           }
-//         ]
-//       },
-//       {
-//         path: 'tab/index',
-//         icon: 'tab',
-//         component: _import('example/tab/index'),
-//         name: 'tab',
-//         meta: { title: 'tab' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/form',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     name: 'form',
-//     meta: {
-//       title: 'form',
-//       icon: 'form'
-//     },
-//     children: [
-//       {
-//         path: 'create-form',
-//         component: _import('form/create'),
-//         name: 'createForm',
-//         meta: { title: 'createForm', icon: 'table' }
-//       },
-//       {
-//         path: 'edit-form',
-//         component: _import('form/edit'),
-//         name: 'editForm',
-//         meta: { title: 'editForm', icon: 'table' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/error',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     name: 'errorPages',
-//     meta: {
-//       title: 'errorPages',
-//       icon: '404'
-//     },
-//     children: [
-//       {
-//         path: '401',
-//         component: _import('errorPage/401'),
-//         name: 'page401',
-//         meta: { title: 'page401', noCache: true }
-//       },
-//       {
-//         path: '404',
-//         component: _import('errorPage/404'),
-//         name: 'page404',
-//         meta: { title: 'page404', noCache: true }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/error-log',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     children: [
-//       {
-//         path: 'log',
-//         component: _import('errorLog/index'),
-//         name: 'errorLog',
-//         meta: { title: 'errorLog', icon: 'bug' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/excel',
-//     component: Layout,
-//     redirect: '/excel/export-excel',
-//     name: 'excel',
-//     meta: {
-//       title: 'excel',
-//       icon: 'excel'
-//     },
-//     children: [
-//       {
-//         path: 'export-excel',
-//         component: _import('excel/exportExcel'),
-//         name: 'exportExcel',
-//         meta: { title: 'exportExcel' }
-//       },
-//       {
-//         path: 'export-selected-excel',
-//         component: _import('excel/selectExcel'),
-//         name: 'selectExcel',
-//         meta: { title: 'selectExcel' }
-//       },
-//       {
-//         path: 'upload-excel',
-//         component: _import('excel/uploadExcel'),
-//         name: 'uploadExcel',
-//         meta: { title: 'uploadExcel' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/zip',
-//     component: Layout,
-//     redirect: '/zip/download',
-//     alwaysShow: true,
-//     meta: { title: 'zip', icon: 'zip' },
-//     children: [
-//       {
-//         path: 'download',
-//         component: _import('zip/index'),
-//         name: 'exportZip',
-//         meta: { title: 'exportZip' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/theme',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     children: [
-//       {
-//         path: 'index',
-//         component: _import('theme/index'),
-//         name: 'theme',
-//         meta: { title: 'theme', icon: 'theme' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/clipboard',
-//     component: Layout,
-//     redirect: 'noredirect',
-//     children: [
-//       {
-//         path: 'index',
-//         component: _import('clipboard/index'),
-//         name: 'clipboardDemo',
-//         meta: { title: 'clipboardDemo', icon: 'clipboard' }
-//       }
-//     ]
-//   },
-
-//   {
-//     path: '/i18n',
-//     component: Layout,
-//     children: [
-//       {
-//         path: 'index',
-//         component: _import('i18n-demo/index'),
-//         name: 'i18n',
-//         meta: { title: 'i18n', icon: 'international' }
-//       }
-//     ]
-//   },
-
-//   { path: '*', redirect: '/404', hidden: true }
-// ]
+  { path: '*', redirect: '/404', hidden: true }
+]

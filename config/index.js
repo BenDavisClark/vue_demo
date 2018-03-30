@@ -12,27 +12,27 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       // 真实数据接口代理
-      '/rest': {
-        target: 'http://192.168.1.106:8083/estimate-rest/rest/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/rest': ''
-        }
-      }
-      
-      // Mock数据接口代理：Easy Mock
       // '/rest': {
-      //   target: ' https://easy-mock.com/mock/5aa9ec27e147c02c565f329a/api/rest/',
+      //   target: 'http://192.168.1.106:8083/estimate-rest/rest/',
       //   changeOrigin: true,
       //   pathRewrite: {
       //     '^/rest': ''
       //   }
       // }
+      
+      // Mock数据接口代理：Easy Mock
+      '/rest': {
+        target: ' https://easy-mock.com/mock/5aa9ec27e147c02c565f329a/api/rest/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/rest': ''
+        }
+      }
     },
 
     // Various Dev Server settings
-    host: '192.168.1.72', // can be overwritten by process.env.HOST
-    port: 8787, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    host: 'localhost', // can be overwritten by process.env.HOST
+    port: 8585, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,
