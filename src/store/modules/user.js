@@ -4,7 +4,7 @@ import { getToken, setToken, removeToken, getID, setID, removeID, getAccount, se
 const user = {
   state: {
     token: getToken(),
-    accountId: getID(),
+    JSESSIONID: getID(),
     account: getAccount(),
     name: '',
     avatar: '',
@@ -15,8 +15,8 @@ const user = {
     SET_TOKEN: (state, token) => {
       state.token = token
     },
-    SET_ACCOUNTID: (state, accountId) => {
-      state.accountId = accountId
+    SET_JSESSIONID: (state, accountId) => {
+      state.JSESSIONID = accountId
     },
     SET_ACCOUNT: (state, account) => {
       state.account = account
@@ -40,10 +40,10 @@ const user = {
         login(username, userInfo.password).then(response => {
           const data = response
           setToken(data.token)
-          setID(data.accountId)
+          setID(data.JSESSIONID)
           setAccount(data.account)
           commit('SET_TOKEN', data.token)
-          commit('SET_ACCOUNTID', data.accountId)
+          commit('SET_JSESSIONID', data.JSESSIONID)
           commit('SET_ACCOUNT', data.account)
           resolve()
         }).catch(error => {
@@ -55,7 +55,7 @@ const user = {
     // 获取用户信息
     GetInfo ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token, state.account).then(response => {
+        getInfo(state.token, state.JSESSIONID, state.account).then(response => {
           // const data = response
           commit('SET_ROLES', 'admin')
           // commit('SET_ROLES', data.role)
@@ -71,7 +71,7 @@ const user = {
     // 登出
     LogOut ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        logout(state.token).then(() => {
+        logout(state.token, state.JSESSIONID, state.account).then(() => {
           commit('SET_TOKEN', '')
           commit('SET_ROLES', [])
           removeToken()

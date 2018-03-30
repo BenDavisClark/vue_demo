@@ -9,20 +9,21 @@ export function login (username, password) {
   })
 }
 
-export function getInfo (token, account) {
+export function getInfo (token, id, account) {
   return fetch({
     url: '/rest/token/userRole',
     method: 'post',
     // params: {
     //   token: token, account: account
     // }
-    data: Qs.stringify({ token: token, account: account })
+    data: Qs.stringify({ token: token, JSESSIONID: id, account: account })
   })
 }
 
-export function logout () {
+export function logout (token, id, account) {
   return fetch({
     url: '/rest/token/logout',
-    method: 'get'
+    method: 'post',
+    data: Qs.stringify({ token: token, JSESSIONID: id, account: account })
   })
 }

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 
 const TokenKey = 'Admin-Token'
-const AccountId = 'Account-ID'
+const JSESSIONID = 'JSESSIONID'
 const AccountName = 'AccountName'
 
 export function getToken () {
@@ -17,15 +17,15 @@ export function removeToken () {
 }
 
 export function getID () {
-  return Cookies.get(AccountId)
+  return Cookies.get(JSESSIONID)
 }
 
 export function setID (id) {
-  return Cookies.set(AccountId, id)
+  return Cookies.set(JSESSIONID, id)
 }
 
 export function removeID () {
-  return Cookies.remove(AccountId)
+  return Cookies.remove(JSESSIONID)
 }
 
 export function getAccount () {
