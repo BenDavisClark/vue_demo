@@ -41,7 +41,6 @@ export default new Router({
   routes: constantRouterMap
 })
 
-
 // 需要根据角色过滤权限的路由表
 export const asyncRouterMap = [
   {
@@ -49,7 +48,7 @@ export const asyncRouterMap = [
     noDropdown: true,
     component: Layout,
     redirect: 'noredirect',
-    children: [{ path: 'index', component: _import('/single/index'), name: 'single', meta: { title: '单一菜单', icon: 'homepage' }}]
+    children: [{path: 'index', component: _import('/single/index'), name: 'single', meta: { title: '单一菜单', icon: 'homepage' }}]
   },
   {
     path: '/multiple',
@@ -89,18 +88,18 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/permission',
+    path: '/system',
     component: Layout,
-    redirect: '/permission/index',
+    redirect: '/system/index',
     // meta: { roles: ['admin'] }, // 可以再根菜单中设置权限
     children: [
       {
         path: 'index',
-        component: _import('permission/index'),
-        name: 'permission',
+        component: _import('/system/index'),
+        name: 'system',
         meta: {
-          title: 'permission',
-          icon: 'lock',
+          title: 'system',
+          icon: 'manager',
           roles: ['admin'] // 可以只在子菜单中设置权限
         }
       }

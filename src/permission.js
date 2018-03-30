@@ -13,11 +13,18 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => {
+          // 根据返回路由表进行数据重组生成
           // const rowrouter = res.data.param
           // store.dispatch('GenerateRoutes', { rowrouter }).then(() => {
           //   router.addRoutes(store.getters.addRouters)
           //   next({ ...to })
           // })
+
+          // 根据角色过滤本地路由表生成
+          const roles = [res.role]
+          store.dispatch('GenerateLocalRoutes', { roles }).then(() => {
+            router.addRoutes(store.getters.addRouters)
+          })
         })
       } else {
         next()

@@ -56,9 +56,8 @@ const user = {
     GetInfo ({ commit, state }) {
       return new Promise((resolve, reject) => {
         getInfo(state.token, state.JSESSIONID, state.account).then(response => {
-          // const data = response
-          commit('SET_ROLES', 'admin')
-          // commit('SET_ROLES', data.role)
+          const data = response
+          commit('SET_ROLES', data.role)
           // commit('SET_NAME', data.name)
           // commit('SET_AVATAR', data.avatar)
           resolve(response)
