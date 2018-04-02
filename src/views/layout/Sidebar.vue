@@ -63,9 +63,6 @@ export default {
       // isCollapse: !this.$store.state.app.sidebar
     }
   },
-  mounted () {
-    console.log(this.permission_routers)
-  },
   computed: {
     ...mapGetters([
       'permission_routers'

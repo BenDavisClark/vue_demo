@@ -7,6 +7,7 @@ import { asyncRouterMap, constantRouterMap } from '@/router/index'
  */
 function hasPermission (roles, route) {
   if (route.meta && route.meta.role) {
+    console.log(route.meta.role)
     return roles.some(role => route.meta.role.indexOf(role) >= 0)
   } else {
     return true
@@ -46,11 +47,12 @@ const permission = {
     // 根据角色过滤本地路由表生成
     GenerateLocalRoutes ({ commit }, data) {
       return new Promise(resolve => {
-        const { roles } = data
+        const roles = data
         let accessedRouters
         if (roles.indexOf('admin') >= 0) {
           accessedRouters = asyncRouterMap
         } else {
+          console.log('editor here')
           accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         }
         commit('SET_ROUTERS', accessedRouters)
