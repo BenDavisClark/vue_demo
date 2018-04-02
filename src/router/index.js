@@ -86,6 +86,50 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/general',
+    component: Layout,
+    name: '通用页面',
+    redirect: '/general/chart',
+    meta: { title: '通用页面', icon: 'manage', role: ['admin'] },
+    children: [
+      {
+        path: 'chart',
+        component: _import('/general/chart'),
+        name: 'chart',
+        meta: {
+          title: '图表'
+        }
+      },
+      {
+        path: 'form',
+        component: _import('/general/form'),
+        name: 'form',
+        meta: {
+          title: '表单',
+          role: ['admin']
+        }
+      },
+      {
+        path: 'list',
+        component: _import('/general/list'),
+        name: 'list',
+        meta: {
+          title: '列表',
+          role: ['admin']
+        }
+      },
+      {
+        path: 'map',
+        component: _import('/general/map'),
+        name: 'map',
+        meta: {
+          title: '地图',
+          role: ['admin']
+        }
+      }
+    ]
+  },
+  {
     path: '/system',
     component: Layout,
     noDropdown: true,
