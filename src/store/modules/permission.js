@@ -52,11 +52,9 @@ const permission = {
         if (roles.indexOf('admin') >= 0) {
           accessedRouters = asyncRouterMap
         } else {
-          console.log('editor here')
           accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         }
         commit('SET_ROUTERS', accessedRouters)
-        console.log(accessedRouters)
         resolve()
       })
     }
