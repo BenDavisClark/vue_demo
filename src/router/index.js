@@ -32,6 +32,42 @@ export const constantRouterMap = [
     name: 'Dashboard',
     hidden: true,
     children: [{ path: 'dashboard', component: _import('/dashboard/index') }]
+  },
+  // 本地添加一个无权限路由
+  {
+    path: '/multiple',
+    component: Layout,
+    name: '多级菜单',
+    redirect: '/multiple/submenu1',
+    meta: { title: '多级菜单', icon: 'manage', role: ['admin'] },
+    children: [
+      {
+        path: 'submenu1',
+        component: _import('/multiple/submenu1'),
+        name: 'submenu1',
+        meta: {
+          title: '子菜单1'
+        }
+      },
+      {
+        path: 'submenu2',
+        component: _import('/multiple/submenu2'),
+        name: 'submenu2',
+        meta: {
+          title: '子菜单2',
+          role: ['admin']
+        }
+      },
+      {
+        path: 'submenu3',
+        component: _import('/multiple/submenu3'),
+        name: 'submenu3',
+        meta: {
+          title: '子菜单1',
+          role: ['admin']
+        }
+      }
+    ]
   }
 ]
 
