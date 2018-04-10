@@ -21,7 +21,8 @@
       </el-form>
     </table-search>
     <div class="app-container">
-      <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" border fit stripe style="with:100%">
+      <el-table :data="list" v-loading.body="listLoading" element-loading-text="拼命加载中" @selection-change="handleSelectionChange" border fit stripe style="with:100%">
+        <el-table-column type="selection" width="55"></el-table-column>
         <el-table-column prop="orgName" label='分组名称' style="width:10%"></el-table-column>
         <el-table-column prop="orgType" label="分组类型" style="width:25%"></el-table-column>
         <el-table-column prop="parentName" label="所属上级分组" style="width:45%"></el-table-column>
@@ -67,7 +68,8 @@ export default {
       list: null,
       listLoading: true,
       currentPage: 1,
-      pagishow: false
+      pagishow: false,
+      multipleSelection: []
     }
   },
   created () {
@@ -75,7 +77,15 @@ export default {
   },
   methods: {
     onSubmit: function () {
-      console.log('submit!')
+      this.$message.error('错了哦，这是一条错误消息')
+      this.$message({
+        message: '恭喜你，这是一条成功消息',
+        type: 'success'
+      })
+      this.$message({
+        message: '警告哦，这是一条警告消息',
+        type: 'warning'
+      })
     },
     fetchData () {
       this.listLoading = true
@@ -96,6 +106,9 @@ export default {
     },
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
+    },
+    handleSelectionChange (val) {
+      this.multipleSelection = val
     }
   }
 }
