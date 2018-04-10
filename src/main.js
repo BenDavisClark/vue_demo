@@ -35,7 +35,10 @@ import {
   Table,
   TableColumn,
   Loading,
-  Pagination
+  Pagination,
+  Cascader,
+  MessageBox,
+  Message
 } from 'element-ui'
 
 Vue.use(Menu)
@@ -67,8 +70,16 @@ Vue.use(Select)
 Vue.use(Table)
 Vue.use(TableColumn)
 Vue.use(Pagination)
+Vue.use(Cascader)
 
 Vue.use(Loading.directive)
+
+Vue.prototype.$loading = Loading.service
+Vue.prototype.$msgbox = MessageBox
+Vue.prototype.$alert = MessageBox.alert
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.$prompt = MessageBox.prompt
+Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 
