@@ -7,13 +7,15 @@ const permission = {
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
-      state.addRouters = routers
-      state.routers = constantRouterMap.concat(routers)
+      var last = [{ path: '*', redirect: '/404', hidden: true }]
+      var addup = routers.concat(last)
+      console.log(addup)
+      state.addRouters = addup
+      state.routers = constantRouterMap.concat(addup)
     }
   },
   actions: {
-    // 根据角色过滤本地路由表生成
-    GenerateLocalRoutes ({ commit }, data) {
+    GenerateRoutes ({ commit }, data) {
       return new Promise(resolve => {
         var userRoutes = data.rowrouter
 

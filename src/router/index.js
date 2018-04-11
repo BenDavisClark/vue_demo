@@ -24,6 +24,30 @@ Vue.use(Router)
 export const constantRouterMap = [
   { path: '/login', component: _import('/login/index'), hidden: true },
   { path: '/404', component: _import('/404'), hidden: true },
+  // 这里是在本地添加路由的示例(没有权限控制),28-39行;使用时复制，并修改对应名称及路径
+  {
+    path: '/general', // views中文件夹的名称，下面的children为vue文件的名称
+    noDropdown: false,
+    component: Layout,
+    redirect: '/dashboard',
+    name: '通用页面',
+    icon: 'setup',
+    children: [
+      { path: 'list', name: '列表', component: _import('/general/list') },
+      { path: 'chart', name: '图表', component: _import('/general/chart') }
+    ]
+  },
+  {
+    path: '/user', // views中文件夹的名称，下面的children为vue文件的名称
+    noDropdown: false,
+    component: Layout,
+    redirect: '/dashboard',
+    name: '用户新增',
+    icon: 'setup',
+    children: [
+      { path: 'accountDetail', name: '用户详情', component: _import('/user/accountDetail') }
+    ]
+  },
   {
     path: '/',
     noDropdown: true,
@@ -32,42 +56,6 @@ export const constantRouterMap = [
     name: 'Dashboard',
     hidden: true,
     children: [{ path: 'dashboard', component: _import('/dashboard/index') }]
-  },
-  // 本地添加一个无权限路由
-  {
-    path: '/multiple',
-    component: Layout,
-    name: '多级菜单',
-    redirect: '/multiple/submenu1',
-    meta: { title: '多级菜单', icon: 'manage', role: ['admin'] },
-    children: [
-      {
-        path: 'submenu1',
-        component: _import('/multiple/submenu1'),
-        name: 'submenu1',
-        meta: {
-          title: '子菜单1'
-        }
-      },
-      {
-        path: 'submenu2',
-        component: _import('/multiple/submenu2'),
-        name: 'submenu2',
-        meta: {
-          title: '子菜单2',
-          role: ['admin']
-        }
-      },
-      {
-        path: 'submenu3',
-        component: _import('/multiple/submenu3'),
-        name: 'submenu3',
-        meta: {
-          title: '子菜单1',
-          role: ['admin']
-        }
-      }
-    ]
   }
 ]
 

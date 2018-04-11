@@ -41,6 +41,9 @@ import {
   Message
 } from 'element-ui'
 
+import _ from 'lodash'
+Object.defineProperty(Vue.prototype, '_', { value: _ })
+
 Vue.use(Menu)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)

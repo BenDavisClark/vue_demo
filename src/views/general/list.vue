@@ -73,10 +73,11 @@ export default {
     }
   },
   created () {
-    this.fetchData()
+     //this.fetchData()
   },
   methods: {
     onSubmit: function () {
+      console.log(this.multipleSelection)
       this.$message.error('错了哦，这是一条错误消息')
       this.$message({
         message: '恭喜你，这是一条成功消息',
@@ -107,7 +108,7 @@ export default {
     handleCurrentChange (val) {
       console.log(`当前页: ${val}`)
     },
-    handleSelectionChange (val) {
+    handleSelectionChange(val) {
       this.multipleSelection = val
     }
   }
