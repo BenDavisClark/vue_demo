@@ -61,8 +61,7 @@
 </template>
 
 <script>
-import { orgList } from '@/api/org'
-import { deleteOrg } from '@/api/org'
+import { orgList, deleteOrg } from '@/api/org'
 import TableOperate from '@/components/Table/Operate'
 import TableSearch from '@/components/Table/Search'
 import TablePagination from '@/components/Table/PagiContainer'

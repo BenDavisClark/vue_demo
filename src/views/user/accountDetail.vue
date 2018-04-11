@@ -15,12 +15,12 @@
             <!-- 自定义校验 -->
           <el-form-item label="密码" prop="pass">
             <el-input type="password" v-model="formData.pass" auto-complete="off"></el-input>
-          </el-form-item> 
+          </el-form-item>
 
           <el-form-item label="确认密码" prop="password">
             <el-input type="password" v-model="formData.password" auto-complete="off"></el-input>
           </el-form-item>
-          
+
           <!-- Select -->
           <el-form-item label="状态" prop="status">
             <el-select v-model="formData.status" placeholder="">
@@ -32,7 +32,7 @@
           <el-form-item label="所属地区" >
             <group v-on:selected="getgroupid" ></group>
           </el-form-item>
-          
+
           <el-form-item label="所属组织" prop="orgId">
               <el-select v-model="formData.orgId" placeholder="">
                 <el-option v-for="item in formData.orgs" :key="item.id" :label="item.name" :value="item.id">
@@ -83,14 +83,10 @@
   </div>
 </template>
 <script>
-import { getArea } from '@/api/org'
-import { editAccount } from '@/api/accountDetail'
-import { submitAccount } from '@/api/accountDetail'
 import SingleUpload from '@/components/Upload/SingleUpload'
 import MutiUpload from '@/components/Upload/MutiUpload'
 import Group from '@/components/Group/index'
 export default {
-  components: { SingleUpload, MutiUpload ,Group},
   data () {
     // 自定义校验规则
     // var validatePass = (rule, value, callback) => {
@@ -106,7 +102,7 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       // if (value === '') {
       //   callback(new Error('请再次输入密码'))
-      // } else 
+      // } else
       if (value !== this.formData.pass) {
         callback(new Error('两次输入密码不一致!'))
       } else {
@@ -138,8 +134,8 @@ export default {
           { required: true, message: '请输入账号', trigger: 'blur' },
           { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
-        //pass: [{required:true, validator: validatePass, trigger: 'blur' }],
-        password: [{validator: validatePass2, trigger: 'blur' }],
+        // pass: [{required:true, validator: validatePass, trigger: 'blur' }],
+        password: [{ validator: validatePass2, trigger: 'blur' }],
         orgId: [
           { required: true, message: '请选择组织', trigger: 'change' }
         ],
