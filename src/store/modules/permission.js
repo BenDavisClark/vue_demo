@@ -12,7 +12,8 @@ const permission = {
     }
   },
   actions: {
-    GenerateRoutes ({ commit }, data) {
+    // 根据角色过滤本地路由表生成
+    GenerateLocalRoutes ({ commit }, data) {
       return new Promise(resolve => {
         var userRoutes = data.rowrouter
 
