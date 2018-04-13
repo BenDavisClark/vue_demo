@@ -1,27 +1,12 @@
 # vue-admin-zenchn
 
-> A Vue.js project
+> 浙大正呈公司产品通用的后台管理系统初始化项目
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 功能
+- 登录
+- 权限控制（主干：根据路由表）
+- 权限控制（分支：根据角色）
+- Table Example
+- Form Example
+- Chart Example
+- Map Example
