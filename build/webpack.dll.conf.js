@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
-    vendor: ['vue/dist/vue.common.js','vue-router', 'babel-polyfill','axios','vuex']
+    vendor: ['vue/dist/vue.common.js','element-ui','vue-router', 'babel-polyfill','axios','vuex']
   },
   output: {
     path: path.join(__dirname, '../static/js'),

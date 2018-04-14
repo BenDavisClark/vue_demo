@@ -25,18 +25,18 @@ export const constantRouterMap = [
   { path: '/login', component: _import('/login/index'), hidden: true },
   { path: '/404', component: _import('/404'), hidden: true },
   // 这里是在本地添加路由的示例(没有权限控制),28-39行;使用时复制，并修改对应名称及路径
-  {
-    path: '/test', // views中文件夹的名称，下面的children为vue文件的名称
-    noDropdown: false,
-    component: Layout,
-    redirect: '/test/list',
-    name: '本地添加',
-    icon: 'setup',
-    children: [
-      { path: 'list', name: '列表', component: _import('/test/list') },
-      { path: 'chart', name: '图表', component: _import('/test/chart') }
-    ]
-  },
+  // {
+  //   path: '/test', // views中文件夹的名称，下面的children为vue文件的名称
+  //   noDropdown: false,
+  //   component: Layout,
+  //   redirect: '/test/form',
+  //   name: '本地路由',
+  //   icon: 'setup',
+  //   children: [
+  //     { path: 'form', name: '表单', component: _import('/test/form') },
+  //     { path: 'chart', name: '图表', component: _import('/test/chart') }
+  //   ]
+  // },
   {
     path: '/',
     noDropdown: true,

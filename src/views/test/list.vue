@@ -1,8 +1,8 @@
 <template>
   <div>
     <table-operate>
-      <el-button type="primary" size="small">新建</el-button>
-      <el-button type="danger" size="small">删除</el-button>
+      <el-button type="primary" size="small" v-show="hasAuth('add')">新建</el-button>
+      <el-button type="danger" size="small" v-show="hasAuth('del')">删除</el-button>
     </table-operate>
     <table-search>
       <el-form :inline="true" :model="listQuery" class="demo-form-inline">
@@ -53,6 +53,8 @@ import { getList } from '@/api/list'
 import TableOperate from '@/components/Table/Operate'
 import TableSearch from '@/components/Table/Search'
 import TablePagination from '@/components/Table/PagiContainer'
+import { mapGetters } from 'vuex'
+import { btnauth } from '@/components/Mixin/btnauth'
 export default {
   components: {
     TableOperate,
@@ -72,6 +74,10 @@ export default {
       multipleSelection: []
     }
   },
+  computed: {
+    ...mapGetters(['permission_routers']),
+  },
+  mixins: [btnauth],
   created () {
      this.fetchData()
   },

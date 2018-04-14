@@ -9,7 +9,6 @@ const permission = {
     SET_ROUTERS: (state, routers) => {
       var last = [{ path: '*', redirect: '/404', hidden: true }]
       var addup = routers.concat(last)
-      console.log(addup)
       state.addRouters = addup
       state.routers = constantRouterMap.concat(addup)
     }
@@ -34,6 +33,7 @@ const permission = {
               let childrenRouteItem = {}
               childrenRouteItem.path = userRoutes[i].children[j].url
               childrenRouteItem.name = userRoutes[i].children[j].name
+              childrenRouteItem.btnauth = userRoutes[i].children[j].meta.handleAuth
               var url = userRoutes[i].children[j].url
               childrenRouteItem.component = _import(path + '/' + url)
               childrenRoute.push(childrenRouteItem)

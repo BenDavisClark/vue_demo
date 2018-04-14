@@ -86,6 +86,21 @@ Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 
+// 按钮级权限控制
+// Vue.directive('has',{
+//   bind: function (el, binding) {
+//     console.log(binding.value)
+//     if (binding.value === 'del') {
+//       el.parentNode.removeChild(el);
+//     }
+//     Vue.prototype.$auth()
+//   }
+// })
+
+// Vue.prototype.$auth = function(value) {
+//   console.log()
+// }
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
