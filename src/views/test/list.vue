@@ -73,7 +73,7 @@ export default {
     }
   },
   created () {
-     //this.fetchData()
+     this.fetchData()
   },
   methods: {
     onSubmit: function () {

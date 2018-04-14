@@ -20,7 +20,6 @@ service.interceptors.request.use(config => {
   if (store.getters.account) {
     config.headers['account'] = getAccount()
   }
-  config.headers['Test'] = 'ppp'
   return config
 }, error => {
   // Do something with request error
