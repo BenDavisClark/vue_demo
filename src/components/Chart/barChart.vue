@@ -16,7 +16,7 @@ export default {
     },
     id: {
       type: String,
-      default: 'chart'
+      default: 'barchart'
     },
     width: {
       type: String,
