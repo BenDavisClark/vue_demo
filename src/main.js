@@ -37,6 +37,7 @@ import {
   Loading,
   Pagination,
   Cascader,
+  Tree,
   MessageBox,
   Message
 } from 'element-ui'
@@ -71,6 +72,7 @@ Vue.use(DatePicker)
 Vue.use(RadioGroup)
 Vue.use(Select)
 Vue.use(Table)
+Vue.use(Tree)
 Vue.use(TableColumn)
 Vue.use(Pagination)
 Vue.use(Cascader)

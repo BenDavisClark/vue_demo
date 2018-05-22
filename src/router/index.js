@@ -34,7 +34,8 @@ export const constantRouterMap = [
     icon: 'setup',
     children: [
       { path: 'form', name: '表单', component: _import('/test/form') },
-      { path: 'chart', name: '图表', component: _import('/test/chart') }
+      { path: 'chart', name: '图表', component: _import('/test/chart') },
+      { path: 'damshow', name: '大坝展示', component: _import('/test/damshow') }
     ]
   },
   {
