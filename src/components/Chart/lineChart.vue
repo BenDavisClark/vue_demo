@@ -87,13 +87,27 @@ export default {
           type: 'category',
           data: this.xData
         },
-        yAxis: {
-          type: 'value'
-        },
+        yAxis: [
+          {
+            name: 'test',
+            type: 'value'
+          },
+          {
+            name: 'te2',
+            type: 'value'
+          }
+        ],
         series: [{
           data: this.sData,
-          type: 'line'
-        }]
+          type: 'line',
+          yAxisIndex: 0
+        },
+        {
+          data: [1320,820, 932, 901, 934, 1290, 1330],
+          type: 'line',
+          yAxisIndex: 1
+        }
+        ]
       })
     }
   }

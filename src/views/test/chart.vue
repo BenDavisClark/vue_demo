@@ -1,15 +1,15 @@
 <template>
   <div>
     <line-chart :x-data="xData" :sData="sData"></line-chart>
-    <bar-chart :x-data="xData" :sData="sData" id="barchart1"></bar-chart>
-    <bar-chart :x-data="xData" :sData="sData2" id="barchart2"></bar-chart>
+    <scatter-chart></scatter-chart>
   </div>
 </template>
 <script>
 import lineChart from '@/components/Chart/lineChart'
 import barChart from '@/components/Chart/barChart'
+import scatterChart from '@/components/Chart/scatterChart'
 export default {
-  components: { lineChart, barChart },
+  components: { lineChart, barChart,scatterChart },
   data () {
     return {
       xData: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
