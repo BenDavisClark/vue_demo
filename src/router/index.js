@@ -7,6 +7,7 @@ const _import = require('./_import_component')
 Vue.use(Router)
 
 /**
+* ----- 路由参数配置说明 -----
 * hidden: true                   如果设置 `hidden:true` 将不在侧边栏上显示(默认是false)
 * alwaysShow: true               如果设置 true, 将一直显示, 不管子菜单的个数
 *                                如果未设置, 只有多于1个子菜单时才变为嵌套模式，否则不显示
@@ -34,8 +35,7 @@ export const constantRouterMap = [
     icon: 'setup',
     children: [
       { path: 'form', name: '表单', component: _import('/test/form') },
-      { path: 'chart', name: '图表', component: _import('/test/chart') },
-      { path: 'damshow', name: '大坝展示', component: _import('/test/damshow') }
+      { path: 'chart', name: '图表', component: _import('/test/chart') }
     ]
   },
   {
