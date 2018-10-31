@@ -1,0 +1,332 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+#app {
+  height: 100%;
+}
+.amap-page-container,
+.mapcontainer,
+.amap-container {
+  height: 800px;
+  min-height:650px;
+}
+.select-container {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 140px;
+}
+.select-area {
+  font-size: 14px;
+  width: auto;
+  border: none;
+  background: #fff;
+  border-radius: 0 !important;
+  outline: none;
+  -webkit-appearance: none;
+}
+.select-area option {
+  display: block;
+  text-align: center;
+  border-radius:none !important;
+}
+.search {
+  position: absolute;
+  top: 136px;
+  margin-left: 10px;
+  /* left: 10px; */
+  width: 446px;
+  height: 38px;
+}
+
+.rectangle {
+  border-radius: 2px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.searchInput {
+  width: 388px;
+  height: 38px;
+  font-size: 16px;
+  float: left;
+  padding-left: 10px;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  border: 0px;
+}
+.searchBtn {
+  width: 58px;
+  height: 38px;
+  background-color: #32b4ca;
+  float: left;
+  background-image: url(../../assets/images/search.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bmapShow ul li {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.menu {
+  color: #666666;
+}
+.settingsContent {
+  width: 388px;
+  position: absolute;
+  top: 178px;
+  padding: 10px;
+  height: auto !important;
+  height: 5px;
+  min-height: 5px;
+  margin-left: 11px;
+}
+
+.cbackground {
+  background-color: #fff;
+  z-index: 999;
+}
+.rectangle {
+  border-radius: 2px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+.settingsOptions {
+  width: 350px;
+  height: 200px;
+  color: #999999;
+  background-color: #FFFFFF;
+  .content {
+    width: 300px;
+    float: left;
+    height: auto !important;
+    height: 5px;
+    min-height: 5px;
+  }
+  .subOption {
+    width: 350px;
+    height: 80px;
+    .content{
+      .first {
+        margin-top: 10px;
+        min-height: 30px;
+      }
+      .list {
+        width: 340px;
+        min-height: 42px;
+        z-index: 999;
+        padding-right:10px;
+        .active {
+          color: #3CADDC;
+          font-weight: bold;
+          float: left;
+        }
+        span {
+          line-height: 15px;
+          float: left;
+          font-size: 12px;
+        }
+      }
+    }
+    .icon {
+      width: 40px;
+      height: 80px;
+      float: left;
+      line-height: 50px;
+      text-align: center;
+      img {
+        border: none;
+      }
+    }
+  }
+}
+.settingsContent span {
+  margin-left: 5px;
+  cursor: pointer;
+}
+.amap-logo,.amap-copyright{
+  display: none!important;
+}
+
+/*弹窗样式 */
+.itemDetail {
+  display:none;
+  margin-left: 10px;
+  width: 389px;
+  height: 650px;
+  position: absolute;
+  top: 178px;
+  background-color: rgb(255, 255, 255);
+  font-size:13px;
+  .item-title{
+    background-color: #32b4ca;
+    height: 94px;
+    line-height: 12px;
+    .close {
+      width: 12px;height: 12px;float: right;
+      background-image: url("../../assets/images/close_white.png");
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+    .img {
+      width: 70px;
+      height: 70px;
+      float: right;
+      margin-right: 14px;
+      margin-top: 34px;
+      border-radius: 2px;
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+      img{
+        width: 70px;
+        height: 70px;
+        border-radius: 2px;
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+      }
+    }
+    .info {
+      color: #ffffff;
+      font-size: 14px;
+      padding-top: 20px;
+      padding-left: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      min-height: 36px;
+      text-overflow: ellipsis;
+    }
+    .expand {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #eeeeee;
+      font-size: 12px;
+      padding-left: 20px;
+      padding-top: 10px;
+    }
+  }
+  .tab {
+    border: 1px solid #32b4ca;
+    width: 182px;
+    margin-left: 95px;
+    height: 32px;
+    padding: 0px;
+    color: #32b4ca;
+    margin-top: 10px;
+    li{
+      float: left;
+      width: 90px;
+      line-height: 30px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .active{
+      background-color: #32b4ca;
+      color: #ffffff;
+    }
+  }
+  .tabContent{
+    .content{
+      width: 368px;
+      height: 515px;
+      display: none;
+      margin:0 auto;
+      text-align: left;
+    }
+    .active {
+      display: block;
+    }
+    table {
+      line-height: 23px;
+      color: #808080;
+      margin-left:10px;
+      width: 90%;
+      td {
+        text-align: left;
+        width: 120px;
+      }
+    }
+  }
+}
+/*弹窗样式结束 */
+
+/* 搜索列表*/
+.searchDetail {
+  width: 389px;
+  max-height: 550px;
+  position: absolute;
+  margin-left: 10px;
+  top: 178px;
+  background-color: rgb(255, 255, 255);
+  /*display: none;*/
+  /* overflow: auto; */
+  line-height: 24px;
+  /* overflow-y: auto; */
+  margin-bottom: 45px;
+}
+
+.searchDetail .searchItem {
+  height : 95px;
+  background-image: url("../../assets/images/red_big.png");
+  background-repeat: no-repeat;
+  background-position: 10px 20px;
+  color: red;
+  cursor: pointer;
+  &:hover{
+    background-color: #f2f2f2;
+    background-image: url("../../assets/images/blue_big.png");
+    background-repeat: no-repeat;
+    background-position: 10px 20px;color: blue;
+  }
+  .left {
+    float: left;
+    font-size: 12px;
+    padding-left: 17px;
+    padding-top: 18px;
+  }
+  .middle{
+    float: left;
+    width: 258px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .right{
+    float: left;
+    padding-top: 20px;
+    img {
+      width : 75px;
+      height: 68px;
+      border-radius: 2px;
+    }
+  }
+  .title {
+    color: #32b4ca;
+    font-size: 14px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .content {
+    color: #808080;font-size: 12px;
+  }
+}
+
+.pageBar {
+  width: 389px;
+  height: 60px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* 搜索列表结束*/
+#mapcontainer{
+  font-size:13px;
+  font-family: "宋体";
+}

@@ -34,7 +34,9 @@ export default {
   name: 'login',
   data () {
     const validateUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
+      if(!value){
+        callback(new Error('用户名不能为空'))
+      }else if (!isvalidUsername(value)) {
         callback(new Error('请输入正确的用户名'))
       } else {
         callback()
@@ -49,7 +51,7 @@ export default {
     }
     return {
       loginForm: {
-        username: 'system',
+        username: 'admin',
         password: '123456'
       },
       loginRules: {
@@ -81,7 +83,7 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  @import "src/styles/mixin.scss";
+  @import "../../styles/mixin.scss";
   $bg:#2d3a4b;
   $dark_gray:#889aa4;
   $light_gray:#eee;

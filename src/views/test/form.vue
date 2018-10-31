@@ -45,7 +45,7 @@
           </el-form-item>
 
           <!-- Radio -->
-          <el-form-item label="特殊资源" prop="resource">
+          <el-form-item label="活动资源" prop="resource">
             <el-radio-group v-model="formData.resource">
               <el-radio label="线上品牌商赞助"></el-radio>
               <el-radio label="线下场地免费"></el-radio>
@@ -92,8 +92,8 @@
   </div>
 </template>
 <script>
-import SingleUpload from '@/components/Upload/SingleUpload'
-import MutiUpload from '@/components/Upload/MutiUpload'
+import SingleUpload from './Upload/SingleUpload'
+import MutiUpload from './Upload/MutiUpload'
 export default {
   components: { SingleUpload, MutiUpload },
   data () {
@@ -119,19 +119,16 @@ export default {
     }
     var checkAge = (rule, value, callback) => {
       if (!value) {
-        return callback(new Error('年龄不能为空'))
-      }
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
+         callback(new Error('年龄不能为空'))
+      }else if (!Number.isInteger(value)) {
           callback(new Error('请输入数字值'))
-        } else {
+      }else{
           if (value < 18) {
             callback(new Error('必须年满18岁'))
           } else {
             callback()
           }
-        }
-      }, 1000)
+      }
     }
     return {
       formData: {
@@ -192,6 +189,7 @@ export default {
   methods: {
     submitForm (formName) {
       this.$refs[formName].validate(valid => {
+        //console.log(this.formData)
         if (valid) {
           alert('submit!')
         } else {

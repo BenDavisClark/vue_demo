@@ -51,7 +51,14 @@ export default {
   },
   methods: {
     initChart () {
-      this.chart = echarts.init(document.getElementById(this.id))
+      const theme = {
+        color: [
+          '#FE8463', '#9BCA63', '#FAD860', '#60C0DD', '#0084C6',
+          '#D7504B', '#C6E579', '#26C0C0', '#F0805A', '#F4E001',
+          '#B5C334'
+        ]
+      }
+      this.chart = echarts.init(document.getElementById(this.id),theme)
       this.chart.setOption({
         title: {
           text: '柱状图',

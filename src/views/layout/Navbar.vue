@@ -37,7 +37,7 @@ export default {
       this.$store.dispatch('ToggleSideBar')
     },
     logout () {
-      this.$store.dispatch('LogOut').then(() => {
+      this.$store.dispatch('FedLogOut').then(() => {
         location.reload()
       })
     }
@@ -55,9 +55,9 @@ export default {
     }
     .navbar {
         overflow: hidden;
-        height: 40px;
+        height: 45px;
         background: #2b3643;
-        line-height: 40px;
+        line-height: 45px;
         border-radius: 0px !important;
         border-bottom: none;
         .errLog-container {

@@ -3,7 +3,7 @@
         <el-upload
             class="uploader"
             multiple
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="https://httpbin.org/post"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove">
@@ -16,7 +16,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       imgLength: 1,
       dialogImageUrl: [],
@@ -24,10 +24,10 @@ export default {
     }
   },
   methods: {
-    handleRemove (file, fileList) {
+    handleRemove(file, fileList) {
       console.log(file, fileList)
     },
-    handlePictureCardPreview (file, fileList) {
+    handlePictureCardPreview(file, fileList) {
       console.log(fileList)
       this.dialogImageUrl.push(file.url)
       this.dialogVisible = true

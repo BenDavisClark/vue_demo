@@ -7,6 +7,12 @@
       </div>
       <div class="main-container" :class="{widercontainer:!sidebar.opened}">
         <app-main></app-main>
+
+      </div>
+      <div class="footer">
+        <div class="footer-inner">
+          版权所有 © 浙大正呈科技有限公司 All Rights Reserved.
+        </div>
       </div>
     </div>
   </div>
@@ -51,7 +57,7 @@ export default {
         .sidebar-wrapper {
             width: 180px;
             position: fixed;
-            top: 40px;
+            top: 45px;
             bottom: 0;
             left: 0;
             z-index: 1001;
@@ -77,5 +83,25 @@ export default {
         .widercontainer{
             margin-left: 46px;
         }
+    }
+    .footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+      bottom: 0;
+      background-color: #434343;
+      clear: left;
+      padding: 8px 20px 6px 20px;
+      font-size: 12px;
+      .footer-inner {
+        color: #aaaaaa;
+        float: left;
+        display: inline-block;
+      }
+      .footer-tools {
+        float: right;
+        display: inline-block;
+      }
     }
 </style>

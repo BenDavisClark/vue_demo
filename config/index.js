@@ -6,23 +6,21 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // 真实数据接口代理
-      // '/rest': {
-      //   target: 'http://192.168.1.106:8083/estimate-rest/rest/',
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/rest': ''
-      //   }
-      // }
-
+      //真实数据接口代理
+      '/real': {
+        target: 'http://192.168.1.121:6789',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/real': ''
+        }
+      },
       // Mock数据接口代理：Easy Mock
       '/rest': {
-        target: 'https://easy-mock.com/mock/5aa9ec27e147c02c565f329a/api/rest',
+        target: 'https://easy-mock.com/mock/5b3b0e019b024a2d076a7973/api/test',
         changeOrigin: true,
         pathRewrite: {
           '^/rest': ''
@@ -31,7 +29,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '192.168.1.126', // can be overwritten by process.env.HOST
     port: 8586, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,

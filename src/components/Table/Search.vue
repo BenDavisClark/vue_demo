@@ -18,6 +18,7 @@
     }
     .el-input__inner{
       height: 30px;
+      line-height: 30px;
     }
     .el-button--small{
       padding: 8px 15px;

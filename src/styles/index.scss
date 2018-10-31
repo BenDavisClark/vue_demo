@@ -76,3 +76,8 @@ a:hover {
 .el-cascader__label{
   height: 30px;
 }
+.el-table td, .el-table th{padding:10px 0;}
+.el-time-spinner.has-seconds .el-time-spinner__wrapper:nth-child(2){margin-left:0;}
+.el-time-panel__content::after, .el-time-panel__content::before{margin-top: -8px;}
+.el-time-spinner__wrapper .el-scrollbar__wrap{margin-right:-18px!important;}
+.el-date-editor .el-range__close-icon{line-height: 25px;}

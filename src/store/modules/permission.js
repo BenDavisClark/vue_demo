@@ -7,7 +7,7 @@ const permission = {
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
-      var last = [{ path: '*', redirect: '/404', hidden: true }]
+      var last = [{ path: '*', redirect: '/error/404', hidden: true }]
       var addup = routers.concat(last)
       state.addRouters = addup
       state.routers = constantRouterMap.concat(addup)
@@ -16,8 +16,8 @@ const permission = {
   actions: {
     GenerateRoutes ({ commit }, data) {
       return new Promise(resolve => {
+        //console.log(data)
         var userRoutes = data.rowrouter
-
         var accessedRouters = []
         for (var i = 0; i < userRoutes.length; i++) {
           var userRoutesItem = {}

@@ -13,6 +13,7 @@ Vue.use(Router)
 *                                如果未设置, 只有多于1个子菜单时才变为嵌套模式，否则不显示
 * redirect: noredirect           如果设置 `redirect:noredirect` 将不在面包屑导航中显示
 * name:'router-name'             该名称将用来设置 <keep-alive> (必需设置!!!)
+* noDropdown                     设置菜单是否显示下拉按钮 默认false 显示
 * meta : {
     roles: ['admin','editor']    根据角色控制页面权限 (可以设置多个角色)
     title: 'title'               该名称用来设置子菜单和面包屑导航
@@ -21,31 +22,72 @@ Vue.use(Router)
   }
 **/
 
-// 不需要权限的路由表
+// 本地路由表
 export const constantRouterMap = [
   { path: '/login', component: _import('/login/index'), hidden: true },
-  { path: '/404', component: _import('/404'), hidden: true },
+  { path: '/error/404', component: _import('/error/404'), hidden: true },
+  { path: '/error/401', component: _import('/error/401'), hidden: true },
   // 这里是在本地添加路由的示例(没有权限控制),28-39行;使用时复制，并修改对应名称及路径
+  {
+    path: '',
+    noDropdown: true,
+    component: Layout,
+    redirect: '/index',
+    name:'首页',
+    icon: 'homepage',
+    children: [{
+      path: '/index',
+      name: '首页',
+      component: _import('/demo/home'),
+      meta: { title: '首页',noCache: true }
+    }]
+  },
+  {
+    path: '',
+    noDropdown: true,
+    component: Layout,
+    redirect: '/dashboard',
+    icon: 'manage',
+    name:'总览',
+    children: [{
+      path: '/dashboard',
+      name: '总览',
+      component: _import('/dashboard/index'),
+      meta: { title: '总览',noCache: true }
+    }]
+  },
   {
     path: '/test', // views中文件夹的名称，下面的children为vue文件的名称
     noDropdown: false,
     component: Layout,
     redirect: '/test/form',
     name: '本地路由',
-    icon: 'setup',
+    icon: 'jichuguanli',
+    meta: { title: '本地路由' },
     children: [
-      { path: 'form', name: '表单', component: _import('/test/form') },
-      { path: 'chart', name: '图表', component: _import('/test/chart') }
+      { path: 'form', name: '表单', component: _import('/test/form'),meta: { title: '表单' }},
+      { path: 'chart', name: '图表', component: _import('/test/chart'),meta: { title: '图表' }},
+      { path: 'list', name: '数据列表', component: _import('/test/list'),meta: { title: '数据列表' }},
+      { path: 'Nesting', name: '嵌套页面', component: _import('/test/Nesting'),meta: { title: '嵌套页面' }},
+      { path: 'icons', name: '图标', component: _import('/test/icons'),meta: { title: '图标' }},
+     /* { path: 'preview', name: '图片预览', component: _import('/test/preview'),meta: { title: '图片预览' }},*/
+      { path: 'preview1', name: '图片预览', component: _import('/test/preview1'),meta: { title: '图片预览' }},
+      { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }},
+      { path: 'test', name: '测试', component: _import('/test/test'),meta: { title: '测试' }}
     ]
   },
   {
-    path: '/',
+    path: '/test',
     noDropdown: true,
     component: Layout,
-    redirect: '/index',
-    name: 'Index',
+    redirect: '/test/list',
+    name: '本地路由',
     hidden: true,
-    children: [{ path: 'index', component: _import('/test/index') }]
+    meta: { title: '本地路由' },
+    children: [
+      { path: 'list/Detail',name:"编辑",component: _import('/test/Detail'),meta: { title: '编辑' } },
+      { path: 'list/add',name:"新增",component: _import('/test/add'),meta: { title: '新增' } }
+    ]
   }
 ]
 

@@ -12,7 +12,7 @@
       background: #2b3643;
     }
     &-content {
-      width: 166px;
+      width: 296px;
       height: 40px;
       background: url('../../assets/images/logo.png')
     }
