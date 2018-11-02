@@ -3,6 +3,7 @@
     <div class="list" v-for="(n, index) in imageList" :data-index="index">
       <img @click="open($event)" :src="n.url">
     </div>
+    <a href="http://ocm0knkb1.bkt.clouddn.com/1-1.jpg" target="_blank">查看图片</a>
   </div>
 </template>
 
