@@ -40,7 +40,7 @@
     <div class="app-container">
       <el-table :data="list"  v-loading.body="listLoading" element-loading-text="拼命加载中" @selection-change="handleSelectionChange" border fit stripe style="with:100%">
         <el-table-column type="selection" width="55"></el-table-column>
-        <el-table-column prop="orgName" label='分组名称' style="width:10%"></el-table-column>
+        <el-table-column prop="orgName" label='分组名称' style="width:10%" sortable ></el-table-column>
         <el-table-column prop="orgType" label="分组类型" style="width:25%"></el-table-column>
         <el-table-column prop="parentName" label="所属上级分组" style="width:45%"></el-table-column>
         <el-table-column label="操作" style="width:10%" align="center">

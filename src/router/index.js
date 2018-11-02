@@ -70,10 +70,9 @@ export const constantRouterMap = [
       { path: 'list', name: '数据列表', component: _import('/test/list'),meta: { title: '数据列表' }},
       { path: 'Nesting', name: '嵌套页面', component: _import('/test/Nesting'),meta: { title: '嵌套页面' }},
       { path: 'icons', name: '图标', component: _import('/test/icons'),meta: { title: '图标' }},
-     /* { path: 'preview', name: '图片预览', component: _import('/test/preview'),meta: { title: '图片预览' }},*/
+      /*{ path: 'preview', name: '图片预览', component: _import('/test/preview'),meta: { title: '图片预览' }},*/
       { path: 'preview1', name: '图片预览', component: _import('/test/preview1'),meta: { title: '图片预览' }},
-      { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }},
-      { path: 'test', name: '测试', component: _import('/test/test'),meta: { title: '测试' }}
+      { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }}
     ]
   },
   {

@@ -53,7 +53,8 @@ import {
   Card,
   Progress,
   Tooltip,
-  Transfer
+  Transfer,
+  Popover
 } from 'element-ui'
 
 import _ from 'lodash'
@@ -98,7 +99,7 @@ Vue.use(Card)
 Vue.use(Progress)
 Vue.use(Tooltip)
 Vue.use(Transfer)
-
+Vue.use(Popover)
 Vue.use(Loading.directive)
 Vue.use({
   i18n: (key, value) => i18n.t(key, value)
