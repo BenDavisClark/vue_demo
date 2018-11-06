@@ -5,7 +5,7 @@
         <el-form :model="formData" :rules="rules" ref="userForm" label-width="100px">
           <!-- Input -->
           <el-form-item label="活动名称" prop="name">
-            <el-input v-model="formData.name"></el-input>
+            {{'阿萨德加点击撒点击撒度假四季第三鉴定' | ellipsis}}
           </el-form-item>
 
           <!-- Select -->
@@ -184,6 +184,16 @@ export default {
         checkPass: [{ validator: validatePass2, trigger: 'blur' }],
         age: [{ validator: checkAge, trigger: 'blur' }]
       }
+    }
+  },
+  filters: {
+    ellipsis (value) {
+      console.log(value)
+      if (!value) return ''
+      if (value.length > 8) {
+        return value.slice(0,8) + '...'
+      }
+      return value
     }
   },
   methods: {
