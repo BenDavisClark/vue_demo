@@ -72,7 +72,8 @@ export const constantRouterMap = [
       { path: 'icons', name: '图标', component: _import('/test/icons'),meta: { title: '图标' }},
       /*{ path: 'preview', name: '图片预览', component: _import('/test/preview'),meta: { title: '图片预览' }},*/
       { path: 'preview1', name: '图片预览', component: _import('/test/preview1'),meta: { title: '图片预览' }},
-      { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }}
+      { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }},
+      { path: 'fullcalendar', name: '数据日历', component: _import('/test/fullcalendar'),meta: { title: '数据日历' }}
     ]
   },
   {

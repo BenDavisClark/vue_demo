@@ -10,6 +10,7 @@ import './icons' // icon
 import './styles/common.scss' // icon
 import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
+import fullCalendar from 'vue-fullcalendar'
 
 import {
   Menu,
@@ -128,6 +129,8 @@ Vue.directive('has',{
 Vue.prototype.$auth = function(value) {
   console.log()
 }
+
+Vue.component('full-calendar', fullCalendar)
 
 /* eslint-disable no-new */
 new Vue({
