@@ -1,15 +1,19 @@
-# vue-admin-zenchn
-
-> 通用的后台管理系统初始化项目
+# 常用功能及组件
 
 ## 功能
 - 登录
 - 菜单权限控制（根据路由表）
 - 菜单权限控制（根据角色）
-- 按钮权限控制 
-- Table Example
-- Form Example
-- Chart Example
-- Map Example
-
-
+- 按钮权限控制
+- 表格示例
+- 表单示例
+- 图标示例
+- 高德地图、天地图demo
+- 上传组件
+- 数据日历组件fullcalendar
+- 图片预览组件 vue-photo-preview
+- svg图标
+- 页面iframe嵌套示例
+- 404/500页面
+- 标签栏
+未完待续
