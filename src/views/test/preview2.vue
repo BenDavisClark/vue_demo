@@ -46,6 +46,9 @@
 </template>
 
 <script>
+  import testImg1 from '@/assets/images/test/4.jpg'
+  import testImg2 from '@/assets/images/test/5.jpg'
+  import testImg3 from '@/assets/images/test/6.jpg'
   export default {
      data () {
         return {
@@ -72,9 +75,9 @@
           }],
           visible2: false,
           imageList: [
-            { url: 'http://ocm0knkb1.bkt.clouddn.com/1-1.jpg'},
-            { url: 'http://ocm0knkb1.bkt.clouddn.com/1-2.jpg' },
-            { url: 'http://ocm0knkb1.bkt.clouddn.com/1-3.jpg'}
+            { url: testImg1},
+            { url: testImg2},
+            { url: testImg3}
           ]
         }
       }

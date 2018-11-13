@@ -105,7 +105,6 @@ Vue.use(Loading.directive)
 Vue.use({
   i18n: (key, value) => i18n.t(key, value)
 })
-
 Vue.use(preview)
 Vue.prototype.$loading = Loading.service
 Vue.prototype.$msgbox = MessageBox
