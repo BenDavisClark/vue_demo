@@ -68,6 +68,7 @@ export const constantRouterMap = [
       { path: 'form', name: '表单', component: _import('/test/form'),meta: { title: '表单' }},
       { path: 'chart', name: '图表', component: _import('/test/chart'),meta: { title: '图表' }},
       { path: 'list', name: '数据列表', component: _import('/test/list'),meta: { title: '数据列表' }},
+      { path: 'html2canvas', name: 'html2canvas', component: _import('/test/html2canvas'),meta: { title: 'html2canvas' }},
       { path: 'Nesting', name: '嵌套页面', component: _import('/test/Nesting'),meta: { title: '嵌套页面' }},
       { path: 'icons', name: '图标', component: _import('/test/icons'),meta: { title: '图标' }},
       /*{ path: 'preview', name: '图片预览', component: _import('/test/preview'),meta: { title: '图片预览' }},*/

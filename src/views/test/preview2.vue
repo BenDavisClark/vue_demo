@@ -56,29 +56,45 @@
             id:'12345',
             date: '2016-05-02',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            address: '上海市普陀区金沙江路 1518 弄',
+            imageList: [
+              { url: testImg1},
+              { url: testImg2},
+              { url: testImg3}
+            ]
           }, {
             id:'123456',
             date: '2016-05-04',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            address: '上海市普陀区金沙江路 1518 弄',
+            imageList: [
+              { url: testImg1},
+              { url: testImg2},
+              { url: testImg3}
+            ]
           }, {
             id:'1234567',
             date: '2016-05-01',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            address: '上海市普陀区金沙江路 1518 弄',
+            imageList: [
+              { url: testImg1},
+              { url: testImg2},
+              { url: testImg3}
+            ]
           }, {
             id:'12345678',
             date: '2016-05-03',
             name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
+            address: '上海市普陀区金沙江路 1518 弄',
+            imageList: [
+              { url: testImg1},
+              { url: testImg2},
+              { url: testImg3}
+            ]
           }],
           visible2: false,
-          imageList: [
-            { url: testImg1},
-            { url: testImg2},
-            { url: testImg3}
-          ]
+
         }
       }
   }
