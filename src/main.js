@@ -12,6 +12,7 @@ import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
 import fullCalendar from 'vue-fullcalendar'
 
+
 import {
   Menu,
   Dropdown,
