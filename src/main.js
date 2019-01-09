@@ -11,6 +11,7 @@ import './styles/common.scss' // icon
 import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
 import fullCalendar from 'vue-fullcalendar'
+import gojs from 'gojs'
 
 
 import {
@@ -129,6 +130,7 @@ Vue.directive('has',{
 Vue.prototype.$auth = function(value) {
   console.log()
 }
+Vue.prototype.go = gojs
 
 Vue.component('full-calendar', fullCalendar)
 
