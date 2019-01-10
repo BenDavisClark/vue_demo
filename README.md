@@ -19,4 +19,5 @@
 - 过滤器 filter
 - 基于html2canvas实现网页保存为图片及图片清晰度优化
 - 利用clipboard.js组件进行数据复制粘贴操作
+- 基于gojs实现流程图展示
 -未完待续
