@@ -12,6 +12,9 @@ import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
 import fullCalendar from 'vue-fullcalendar'
 import gojs from 'gojs'
+import * as d3 from "d3";
+import jsplumb from 'jsplumb'
+
 
 
 import {
@@ -131,6 +134,10 @@ Vue.prototype.$auth = function(value) {
   console.log()
 }
 Vue.prototype.go = gojs
+
+Vue.prototype.$d3 = d3;
+Vue.prototype.jsplumb = jsplumb;
+window.d3 = d3;
 
 Vue.component('full-calendar', fullCalendar)
 

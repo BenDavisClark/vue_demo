@@ -73,9 +73,15 @@ export const constantRouterMap = [
       { path: 'icons', name: '图标', component: _import('/test/icons'),meta: { title: '图标' }},
       /*{ path: 'preview', name: '图片预览', component: _import('/test/preview'),meta: { title: '图片预览' }},*/
       { path: 'preview1', name: '图片预览', component: _import('/test/preview1'),meta: { title: '图片预览' }},
-      { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }},
+      // { path: 'preview2', name: '图片预览2', component: _import('/test/preview2'),meta: { title: '图片预览2' }},
       { path: 'fullcalendar', name: '数据日历', component: _import('/test/fullcalendar'),meta: { title: '数据日历' }},
-      { path: 'gojs', name: 'gojs', component: _import('/test/gojs'),meta: { title: 'gojs' }}
+      //{ path: 'FlowDiagram', name: 'FlowDiagram', component: _import('/test/FlowDiagram'),meta: { title: '流程图' }},
+      { path: 'FlowDiagram2', name: 'FlowDiagram1', component: _import('/test/FlowDiagram1'),meta: { title: '流程图1' }},
+      { path: 'jsplumbDemo', name: 'jsplumbDemo', component: _import('/test/jsplumbDemo'),meta: { title: '流程图' }},
+      { path: 'jsplumbDemo1', name: '流程图demo', component: _import('/test/jsplumbDemo1'),meta: { title: '流程图demo' }},
+      //{ path: 'gojs', name: 'gojs', component: _import('/test/gojs'),meta: { title: 'gojs' }},
+      //{ path: 'echartsGraph', name: 'echartsGraph', component: _import('/test/echartsGraph'),meta: { title: 'echartsGraph' }},
+      //{ path: 'echartsDemo1', name: 'echartsDemo', component: _import('/test/echartsDemo1'),meta: { title: 'echartsDemo' }}
     ]
   },
   {
