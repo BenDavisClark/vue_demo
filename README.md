@@ -1,7 +1,9 @@
 
-# 安装依赖  npm install
+# 安装依赖
+# npm install
 
-# 启动项目  npm start
+# 启动项目
+# npm start
 
 # 已实现功能及组件
 
