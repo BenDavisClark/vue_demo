@@ -11,7 +11,6 @@ import './styles/common.scss' // icon
 import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
 import fullCalendar from 'vue-fullcalendar'
-import gojs from 'gojs'
 import * as d3 from "d3";
 import jsplumb from 'jsplumb'
 
@@ -133,7 +132,6 @@ Vue.directive('has',{
 Vue.prototype.$auth = function(value) {
   console.log()
 }
-Vue.prototype.go = gojs
 
 Vue.prototype.$d3 = d3;
 Vue.prototype.jsplumb = jsplumb;

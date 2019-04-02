@@ -92,7 +92,6 @@ export const constantRouterMap = [
       { path: 'jsplumbDemo', name: '流程图demo', component: _import('/web/jsplumbDemo'),meta: { title: '流程图demo' }},
       { path: 'jsplumbDemo1', name: '流程图demo1', component: _import('/web/jsplumbDemo1'),meta: { title: '流程图demo1' }},
       { path: 'jsplumbDemo2', name: '流程图demo2', component: _import('/web/jsplumbDemo2'),meta: { title: '流程图demo2' }},
-      //{ path: 'gojs', name: 'gojs', component: _import('/test/gojs'),meta: { title: 'gojs' }},
       //{ path: 'echartsGraph', name: 'echartsGraph', component: _import('/test/echartsGraph'),meta: { title: 'echartsGraph' }},
       //{ path: 'echartsDemo1', name: 'echartsDemo', component: _import('/test/echartsDemo1'),meta: { title: 'echartsDemo' }}
     ]
