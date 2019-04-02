@@ -1,4 +1,4 @@
-/* 
+/*
     Default styles for jsPlumb Toolkit
 
     Copyright 2018 https://jsplumbtoolkit.com
@@ -267,7 +267,7 @@ Assigned to tile images in a tiled background
     opacity: 0.8;
 }
 
-/* 
+/*
     Assigned to the element that shows the size of the related viewport in a Miniview widget, and which can be dragged to
     move the surface.
 */
@@ -584,7 +584,6 @@ Assigned to tile images in a tiled background
     margin-top: -10px;
     width: 20px;
     height: 20px;
-    background-color: #84acb3;
     cursor: move;
 }
 

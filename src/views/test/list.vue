@@ -23,13 +23,13 @@
     <table-search>
       <el-form :inline="true" :model="listQuery" class="demo-form-inline">
         <el-row>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="审  批  人" style="margin-left:5px;">
               <el-input v-model="listQuery.user" placeholder="审批人"></el-input>
             </el-form-item>
           </el-col>
 
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="分组类型">
               <el-select v-model="listQuery.region1" placeholder="分组类型">
                 <el-option label="分组一" value="shanghai"></el-option>
@@ -39,7 +39,7 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="多项选择">
               <el-select v-model="value5" multiple placeholder="请选择">
                 <el-option
@@ -51,21 +51,14 @@
               </el-select>
             </el-form-item>
           </el-col>
-
-          <el-col :span="6">
-            <el-form-item label="分组名称">
-              <el-input v-model="listQuery.user2" placeholder="分组名称"></el-input>
-            </el-form-item>
-          </el-col>
         </el-row>
-
         <el-row>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="分组名称">
               <el-input v-model="listQuery.user5" placeholder="分组名称"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="分组类型">
               <el-select v-model="listQuery.region2" placeholder="分组类型">
                 <el-option label="分组一" value="shanghai"></el-option>
@@ -74,18 +67,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-         <!-- <el-col :span="12">
-            <el-form-item label="活动时间">
-              <el-col :span="11">
-                <el-date-picker type="date" placeholder="选择日期" v-model="date1" style="width: 100%;"></el-date-picker>
-              </el-col>
-              <el-col class="line" :span="2" style="text-align: center;">-</el-col>
-              <el-col :span="11">
-                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="date2" :default-time="['12:00:00']" style="width: 100%;"></el-time-picker>
-              </el-col>
-            </el-form-item>
-          </el-col>-->
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="活动时间">
               <div class="block">
                 <el-date-picker
@@ -97,41 +79,21 @@
             </el-form-item>
           </el-col>
 
-          <el-col :span="6">
-            <el-form-item label="分组名称">
-              <el-input v-model="listQuery.user3" placeholder="分组名称"></el-input>
-            </el-form-item>
-          </el-col>
         </el-row>
 
         <el-row>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="分组名称">
               <el-input v-model="listQuery.user4" placeholder="分组名称"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="6">
+          <el-col :span="8">
             <el-form-item label="级联选择">
               <el-cascader
                 :options="options"
                 change-on-select
                 @change="changeSelect"
               ></el-cascader>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item label="巡检日期" >
-              <div class="block">
-                <el-date-picker
-                  v-model="dateValue"
-                  type="datetimerange"
-                  align="right"
-                  unlink-panels
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期">
-                </el-date-picker>
-              </div>
             </el-form-item>
           </el-col>
         </el-row>

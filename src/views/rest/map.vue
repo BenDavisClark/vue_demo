@@ -229,7 +229,7 @@
       }
     },
     mounted() {
-      this.changeDivHeight()
+      this.getDivHeight()
       /* const that = this;
        window.onresize = function temp() {
        var divHeight = document.getElementById("container").style.height=document.documentElement.clientHeight-145+"px"
@@ -351,7 +351,7 @@
         }
       },
 
-      changeDivHeight() {
+      getDivHeight() {
         var h = document.documentElement.clientHeight    //获取页面可见高度
         document.getElementById("container").style.height = h - 145 + "px"
       },

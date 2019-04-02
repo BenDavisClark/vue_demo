@@ -3,13 +3,15 @@
     <div class="jtk-demo-main">
       <!-- demo -->
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
-        <div class="window jtk-node" id="flowchartWindow1"><strong>信贷核心</strong></div>
-        <div class="window jtk-node" id="flowchartWindow2">
-          <strong>操作平台</strong>
+        <div class="window jtk-node" :id="'flowchartWindow'+(index+1)" v-for="(item,index) in nodeList">
+          <strong>{{ item.label }}</strong>
         </div>
-        <div class="window jtk-node" id="flowchartWindow3"><strong>调度引擎</strong></div>
-        <div class="window jtk-node" id="flowchartWindow4"><strong>系统核心</strong></div>
-        <div class="window jtk-node" id="flowchartWindow5"><strong>数据库</strong></div>
+
+        <!--<div class="window jtk-node" id="flowchartWindow1"><strong>信贷核心</strong></div>-->
+        <!--<div class="window jtk-node" id="flowchartWindow2"><strong>操作平台</strong></div>-->
+        <!--<div class="window jtk-node" id="flowchartWindow3"><strong>调度引擎</strong></div>-->
+        <!--<div class="window jtk-node" id="flowchartWindow4"><strong>系统核心</strong></div>-->
+        <!--<div class="window jtk-node" id="flowchartWindow5"><strong>数据库</strong></div>-->
       </div>
     </div>
   </div>
@@ -20,7 +22,52 @@
   export default {
     data () {
       return {
+        topVal:0,
+        nodeList:[
+          {
+            id:'Window1',
+            label:'信贷核心',
+          },
+          {
+            id:'Window2',
+            label:'操作平台'
+          },
+          {
+            id:'Window3',
+            label:'调度引擎'
+          },
+          {
+            id:'Window4',
+            label:'系统核心'
+          },
+          {
+            id:'Window5',
+            label:'数据库'
+          }
+        ],
 
+        edgesList:[
+          {
+            from:'Window1',
+            to:'Window5',
+            label:'映射'
+          },
+          {
+            from:'Window2',
+            to:'Window1',
+            label:'拷贝'
+          },
+          {
+            from:'Window4',
+            to:'Window1',
+            label:'出发'
+          },
+          {
+            from:'Window3',
+            to:'Window1',
+            label:'重构'
+          }
+        ]
       }
     },
     methods: {
@@ -29,6 +76,7 @@
     created() {
     },
     mounted () {
+      let that = this
       var instance = window.jsp = jsPlumb.getInstance({
         // 默认拖动选项
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
@@ -36,7 +84,7 @@
         // 例：它返回我们在下面的'init'方法中的每个连接上设置的'labelText'成员。
         ConnectionOverlays: [
           [ "Arrow", {
-            location: 1,
+            location: [0.5] ,
             visible:true,
             width:11,
             length:11,
@@ -129,11 +177,12 @@
           ]
         },
         init = function (connection) {
+          console.log(connection)
           //connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
-          connection.getOverlay("label").setLabel("映射");
+          //connection.getOverlay("label").setLabel("映射");
         };
 
-      var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
+      var _addEndpoints = function (toId, sourceAnchors,targetAnchors) {
 
         for (var i = 0; i < sourceAnchors.length; i++) {
           var sourceUUID = toId + sourceAnchors[i];
@@ -141,22 +190,39 @@
             anchor: sourceAnchors[i], uuid: sourceUUID
           });
         }
-        for (var j = 0; j < targetAnchors.length; j++) {
-          var targetUUID = toId + targetAnchors[j];
-          instance.addEndpoint("flowchart" + toId, targetEndpoint, {
-            anchor: targetAnchors[j], uuid: targetUUID
-          });
-        }
+        // for (var j = 0; j < targetAnchors.length; j++) {
+        //   var targetUUID = toId + targetAnchors[j];
+        //   instance.addEndpoint("flowchart" + toId, targetEndpoint, {
+        //     anchor: targetAnchors[j], uuid: targetUUID
+        //   });
+        // }
       };
+
+      that.nodeList.map((node, index)=>{
+        if(index == 0){
+          $("#flowchartWindow1").css({"left":"15em","top":"20em"});
+        }else{
+          this.topVal = this.topVal+8
+          $("#flowchartWindow"+(index+1)).css({"left":"35em","top":(this.topVal)+'em'});
+        }
+      })
 
       // 暂停绘画和初始化
       instance.batch(function () {
 
-        _addEndpoints("Window4", ["LeftMiddle",], []);
-        _addEndpoints("Window2", ["LeftMiddle"], []);
-        _addEndpoints("Window3", ["LeftMiddle"], []);
-        _addEndpoints("Window5", ["LeftMiddle"], []);
-        _addEndpoints("Window1", [ "RightMiddle"], ["TopCenter", "BottomCenter"]);
+        for(let i = 0;i< that.nodeList.length; i++){
+          if(i == 0){
+            _addEndpoints("Window1", [ "RightMiddle","TopCenter", "BottomCenter"]);
+          }else{
+            _addEndpoints("Window"+(i+1), [ "LeftMiddle"]);
+          }
+        }
+
+        // _addEndpoints("Window4", ["LeftMiddle"]);
+        // _addEndpoints("Window2", ["LeftMiddle"]);
+        // _addEndpoints("Window3", ["LeftMiddle"]);
+        // _addEndpoints("Window5", ["LeftMiddle"]);
+        // _addEndpoints("Window1", [ "RightMiddle","TopCenter", "BottomCenter"]);
 
         // 监听连接事件， 初始化连接
         // listen for new connections; initialise them the same way we initialise the connections at startup.
@@ -174,12 +240,25 @@
         // instance.connect({uuids: ["Window2BottomCenter", "Window3TopCenter"]});
         //instance.connect({uuids: ["Window2LeftMiddle", "Window4LeftMiddle"]});
         // instance.connect({uuids: ["Window4TopCenter", "Window4RightMiddle"]});
-        instance.connect({uuids: ["Window2LeftMiddle", "Window1TopCenter"]});
-        //instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});
-        //instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});
-        instance.connect({uuids: ["Window4LeftMiddle", "Window1RightMiddle"]});
-        instance.connect({uuids: ["Window1BottomCenter", "Window3LeftMiddle"] });
-        instance.connect({uuids: ["Window5LeftMiddle", "Window1RightMiddle"] });
+        // instance.connect({uuids: ["Window2LeftMiddle", "Window1TopCenter"],label:'映射'});
+        // //instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});
+        // //instance.connect({uuids: ["Window3RightMiddle", "Window2RightMiddle"]});
+        // instance.connect({uuids: ["Window4LeftMiddle", "Window1RightMiddle"],label:'拷贝'});
+        // instance.connect({uuids: ["Window1BottomCenter", "Window3LeftMiddle"],label:'重构' });
+        // instance.connect({uuids: ["Window5LeftMiddle", "Window1RightMiddle"],label:'出发' });
+
+
+
+        let edgesList = that.edgesList
+        edgesList.map((node, index) => {
+          if(node.from === 'Window2'){
+            instance.connect({uuids: [node.from+"LeftMiddle", node.to+"TopCenter"],label:node.label });
+          }else if(node.from === 'Window1'){
+            instance.connect({uuids: [node.from+"BottomCenter", node.to+"LeftMiddle"],label:node.label });
+          }else{
+            instance.connect({uuids: [node.from+"LeftMiddle", node.to+"RightMiddle"],label:node.label });
+          }
+        })
         //
 
         //
@@ -213,5 +292,11 @@
   @import "../../assets/css/jsplumbtoolkit-defaults.css";
   @import "../../assets/css/jsplumbtoolkit-demo.css";
   @import "../../assets/css/main.css";
+  .jtk-demo-main{
+    .jtk-overlay{
+      font-size:14px;
+      color:#333;
+    }
+  }
 
 </style>

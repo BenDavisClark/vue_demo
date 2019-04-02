@@ -9,11 +9,11 @@
         <app-main></app-main>
 
       </div>
-      <div class="footer">
-        <div class="footer-inner">
-          版权所有 © 浙大正呈科技有限公司 All Rights Reserved.
-        </div>
-      </div>
+      <!--<div class="footer">-->
+        <!--<div class="footer-inner">-->
+          <!--版权所有 © 浙大正呈科技有限公司 All Rights Reserved.-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </template>

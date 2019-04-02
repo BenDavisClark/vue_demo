@@ -234,8 +234,8 @@
     line-height:20px;
   }
   .edgePath path {
-    stroke: #333;
-    fill: #333;
+    stroke: #CFDBE1;
+    fill: #CFDBE1;
     stroke-width: 1.5px;
   }
   /************ 图表变量 ***************/
