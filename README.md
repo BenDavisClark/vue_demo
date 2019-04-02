@@ -8,7 +8,8 @@
 - 表格示例
 - 表单示例
 - 图表示例
-- 高德地图、天地图demo
+- 高德地图demo
+- 天地图demo
 - 上传组件
 - 数据日历组件fullcalendar
 - 图片预览组件 vue-photo-preview
@@ -20,4 +21,5 @@
 - 基于html2canvas实现网页保存为图片及图片清晰度优化
 - 利用clipboard.js组件进行数据复制粘贴操作
 - 基于gojs实现流程图展示
+- 基于jsplumb实现流程图展示及动态展示效果
 -未完待续
