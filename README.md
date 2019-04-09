@@ -29,4 +29,13 @@
 - 利用clipboard.js组件进行数据复制粘贴操作
 - 基于gojs实现流程图展示
 - 基于jsplumb实现流程图展示及动态展示效果
-- 未完待续
+- 未完待续<br>
+
+### 部分实现效果
+---------------<br>
+![总览](src/assets/images/example/image.png)
+
+
+
+
+
