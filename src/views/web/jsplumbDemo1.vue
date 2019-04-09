@@ -376,12 +376,6 @@
           that.loopHandle(overlay)
           var timer =  setInterval(res=>{
               that.loopHandle(overlay)
-               // that.loc = loc+ 0.2
-               // if(that.loc >1){
-               //   clearInterval(timer);
-               // }else{
-               //   overlay.setLocation( that.loc )
-               // }
           },6000)
           //connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
           //connection.getOverlay("label").setLabel("映射");
