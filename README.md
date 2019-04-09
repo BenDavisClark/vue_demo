@@ -39,7 +39,7 @@
 ![gojs流程图](src/assets/images/example/image4.png)
 ![jsplumb流程图](src/assets/images/example/image5.png)
 ![高德地图](src/assets/images/example/image6.png)
-![天地图](src/assets/images/example/image6.png)
+![天地图](src/assets/images/example/image7.png)
 
 
 
