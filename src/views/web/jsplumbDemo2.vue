@@ -94,7 +94,7 @@
             }
           } ],
           [ "Label", {
-            location: 0.5,
+            location: 1,
             id: "label",
             cssClass: "aLabel",
             events:{

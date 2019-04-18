@@ -4,6 +4,7 @@ import app from './modules/app'
 import user from './modules/user'
 import permission from './modules/permission'
 import tagsView from './modules/tagsView'
+import flow from './modules/store'
 import getters from './getters'
 import 'babel-polyfill'
 
@@ -14,7 +15,8 @@ const store = new Vuex.Store({
     app,
     user,
     permission,
-    tagsView
+    tagsView,
+    flow
   },
   getters
 })

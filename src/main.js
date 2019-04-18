@@ -12,10 +12,13 @@ import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
 import fullCalendar from 'vue-fullcalendar'
 import * as d3 from "d3";
+import axios from 'axios'
+// jsplumb
 import jsplumb from 'jsplumb'
+import 'jsplumb/css/jsplumbtoolkit-defaults.css';
 
-
-
+//jquery ui
+import 'jquery-ui-dist/jquery-ui'
 import {
   Menu,
   Dropdown,
@@ -59,7 +62,12 @@ import {
   Progress,
   Tooltip,
   Transfer,
-  Popover
+  Popover,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Footer
 } from 'element-ui'
 
 import _ from 'lodash'
@@ -105,6 +113,11 @@ Vue.use(Progress)
 Vue.use(Tooltip)
 Vue.use(Transfer)
 Vue.use(Popover)
+Vue.use(Container)
+Vue.use(Header)
+Vue.use(Aside)
+Vue.use(Main)
+Vue.use(Footer)
 Vue.use(Loading.directive)
 Vue.use({
   i18n: (key, value) => i18n.t(key, value)
@@ -118,6 +131,7 @@ Vue.prototype.$prompt = MessageBox.prompt
 Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
+Vue.prototype.$axios = axios;
 
 //按钮级权限控制
 Vue.directive('has',{

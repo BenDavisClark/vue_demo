@@ -136,7 +136,6 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
   .app-main{
     padding-top: 46px;
-    margin-bottom:20px;
   }
   .tags-view-container {
     .tags-view-wrapper {
