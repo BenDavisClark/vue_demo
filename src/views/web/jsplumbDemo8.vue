@@ -49,7 +49,7 @@
       <div slot="title">属性设置</div>
       <el-form :model="nodeForm" ref="nodeForm" :label-width="formLabelWidth">
         <!--<el-form-item :label="obj.displayName" v-for="(obj, idx) in busiTypePropsMap[currEditItem.busiType]" :key="idx">-->
-          <!--<el-input type="text" v-model="nodeForm[obj.keyName]" />-->
+        <!--<el-input type="text" v-model="nodeForm[obj.keyName]" />-->
         <!--</el-form-item>-->
         <el-form-item label="节点名称" >
           <el-input v-model="nodeForm.name" placeholder="请输入节点名称" style="width:100%"></el-input>
@@ -87,8 +87,8 @@
         },
         scenarioList:[
           {
-          'name': '场景一',
-          'id': 'json.1.json'
+            'name': '场景一',
+            'id': 'json.1.json'
           }
         ],
         tasks: this.$store.state.flow.tasks,
@@ -288,7 +288,7 @@
       // 保存
       saveChart() {
         console.log( this.chartData)  //节点数据)
-       // console.log(JSON.stringify(this.chartData));
+        // console.log(JSON.stringify(this.chartData));
         this.dialogFormVisible = true;
       },
       /**

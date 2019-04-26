@@ -1,8 +1,9 @@
 <template>
   <div class="workplace-chart" :id="id" :style="nodeStyle" @dblclick="handleNodeDbclick">
-    <i :class="[icon,type]"></i>
+    <i :class="[icon,type]" class="iconType"></i>
     <span>{{text}}</span>
     <div class="ep"></div>
+    <span class="del" delete-all @click="handleNodeDel"><i class="el-icon-error" style="font-size: 16px;"></i></span>
   </div>
 </template>
 <script>
@@ -32,9 +33,15 @@ export default {
   data() {
     return {};
   },
+  mounted(){
+
+  },
   methods: {
     handleNodeDbclick() {
       this.$emit("edit")
+    },
+    handleNodeDel() {
+      this.$emit("deleteNode")
     }
   }
 };
@@ -48,7 +55,12 @@ export default {
   border: 1px dotted #fff;
   font-size: 13px;
   background: #EFF4f8;
-  i {
+  /*&:hover{*/
+    /*background: white;*/
+    /*color:#409eff;*/
+    /*border: 1px dotted #409eff;*/
+  /*}*/
+  i.iconType {
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;
@@ -62,21 +74,36 @@ export default {
     user-select: none;
     &.circle {
       background-image: url(../../assets/images/demo/circle.png);
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
       background-size: 100%;
     }
     &.diamond {
       background-image: url(../../assets/images/demo/diamond.png);
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
       background-size: 100%;
     }
   }
   span {
     display: block;
+  }
+  .del, .node-collapse {
+    position:absolute;
+    top: -4px;
+    left: 2px;
+    /* background-color:#ccc; */
+    padding:1px;
+    cursor:pointer;
+    font-size:13px;
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+    text-align:center;
+    display:block;
+    line-height: 30px;
   }
   .ep {
     opacity: 0;

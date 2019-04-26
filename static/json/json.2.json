@@ -1,0 +1,67 @@
+{
+  "nodes": [
+    {
+      "id": "867bf2c9-d457-47a1-8fc3-4c1933c67331",
+      "icon":  "el-icon-date",
+      "type": "diamond",
+      "text": "节点1",
+      "nodeStyle": {
+        "top": "74.32291412353516px",
+        "left": "173px"
+      },
+      "props": {}
+    },
+    {
+      "id": "988f4677-079f-42ed-8411-8aa4fe55f6e2",
+      "icon":  "el-icon-time",
+      "type": "diamond",
+      "text": "节点2",
+      "nodeStyle": {
+        "top": "125.48957824707031px",
+        "left": "459px"
+      },
+      "props": {}
+    },
+    {
+      "id": "6223d3f3-ffdb-494d-bccc-c1bec748330c",
+      "icon":  "el-icon-bell",
+      "type": "diamond",
+      "text": "节点3",
+      "nodeStyle": {
+        "top": "359px",
+        "left": "183px"
+      },
+      "props": {}
+    },
+    {
+      "id": "21226e8c-c9bc-4db6-a727-c7d81efc7772",
+      "icon": "el-icon-star-on",
+      "type": "diamond",
+      "text": "节点4",
+      "nodeStyle": {
+        "top": "427.32291412353516px",
+        "left": "508px"
+      },
+      "props": {}
+    }
+  ],
+  "connections": [
+    {
+      "targetId": "988f4677-079f-42ed-8411-8aa4fe55f6e2",
+      "sourceId": "867bf2c9-d457-47a1-8fc3-4c1933c67331"
+    },
+    {
+      "targetId": "6223d3f3-ffdb-494d-bccc-c1bec748330c",
+      "sourceId": "867bf2c9-d457-47a1-8fc3-4c1933c67331"
+    },
+    {
+      "targetId": "21226e8c-c9bc-4db6-a727-c7d81efc7772",
+      "sourceId": "867bf2c9-d457-47a1-8fc3-4c1933c67331"
+    },
+    {
+      "targetId": "21226e8c-c9bc-4db6-a727-c7d81efc7772",
+      "sourceId": "6223d3f3-ffdb-494d-bccc-c1bec748330c"
+    }
+  ],
+  "props": {}
+}

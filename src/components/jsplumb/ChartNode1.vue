@@ -1,6 +1,6 @@
 <template>
   <div class="workplace-chart" :id="id" :style="nodeStyle" @dblclick="handleNodeDbclick">
-    <i :style="{'backgroundImage': 'url('+icon+')'}"></i>
+    <i :style="{'backgroundImage': 'url('+icon+')'}" class="chartIcon"></i>
     <!--<i :class="[icon,type]"></i>-->
     <span>{{text}}</span>
     <div class="ep"></div>
@@ -62,7 +62,7 @@ export default {
   margin: 0;
   cursor: pointer;
   padding: 10px;
-  i {
+  i.chartIcon {
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center;

@@ -11,6 +11,7 @@
           <!-- Select -->
           <el-form-item label="活动区域" prop="region">
             <el-select v-model="formData.region" placeholder="请选择活动区域">
+              <el-option label="全部" value=""></el-option>
               <el-option label="区域一" value="shanghai"></el-option>
               <el-option label="区域二" value="beijing"></el-option>
             </el-select>
