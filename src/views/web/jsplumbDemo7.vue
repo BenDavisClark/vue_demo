@@ -149,7 +149,7 @@
 
         // 监听 connection 事件
         instance.bind("connection", function(info) {
-          _self.initConn(info.connection);
+          //_self.initConn(info.connection);
           // info.connection.getOverlay("label").setLabel(info.connection.id);
         });
         // 监听拖动connection 事件，判断是否有重复链接

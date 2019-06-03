@@ -144,6 +144,7 @@
         clientHeight : 0,
         nodeId: '', //节点id
         lineDescName:'', //连线说明
+        lineDescNameIndex:'', //连线说明
         conn:'', //连线实例
         groupList: [   //分组数据
           {
@@ -251,6 +252,7 @@
         // 监听连接线点击事件
         this.instance.bind('click', function (c) {
           console.log(c)
+          _self.lineDescNameIndex = _self.lineDescName
           _self.lineDescName = ''
           _self.currSourceId = c.sourceId
           _self.currTargetId = c.targetId
@@ -258,6 +260,7 @@
             source:c.sourceId,
             target:c.targetId
           });
+          _self.instance.deleteConnection(c)
           _self.dialogFormVisible4 = true
           //this.instance.deleteConnection(c)  //删除连接线
         })
@@ -748,7 +751,6 @@
       },
       //新增连接线
       submitDescSave(){
-        console.log(this._self.lineDescName)
         let _self = this
         let conns = _self.chartData.connections
 
@@ -764,6 +766,7 @@
       },
       //取消连接线
       cancelDescSave(){
+        _self.lineDescName =  _self.lineDescNameIndex
         this.dialogFormVisible4 = false
       },
 

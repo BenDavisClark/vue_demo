@@ -61,7 +61,7 @@ export default {
   text-align: center;
   margin: 0;
   cursor: pointer;
-  padding: 10px;
+  padding: 5px;
   i.chartIcon {
     display: inline-block;
     background-repeat: no-repeat;
