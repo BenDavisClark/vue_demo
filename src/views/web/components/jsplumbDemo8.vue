@@ -1,27 +1,6 @@
 <template>
-  <el-container class="container" id="work-container">
-    <el-aside width="200px">
-      <div class="box-card">
-        <div class="header">任务列表</div>
-        <div class="card-body">
-          <div class="item" v-for="(item, idx) in tasks" :key="idx" :data-icon="item.icon" :data-text="item.name" :data-busitype="item.busiType">
-            <i :style="{backgroundImage: 'url('+item.icon+')'}" ></i>
-            <span class="text">{{item.name}}</span>
-          </div>
-        </div>
-      </div>
-      <div class="template-box">
-        <div class="header">场景列表</div>
-        <ul class="template-list">
-          <li class="item" :class="{'active':idx===currScenarioIdx}" v-for="(item,idx) in scenarioList" :key="item.id" @click="handleClickTemp(item.id, idx)">
-            {{item.name}}
-          </li>
-        </ul>
-      </div>
-    </el-aside>
+  <el-container class="container work-main" id="work-container">
     <el-main>
-      <el-button class="btn-clear" @click="clearChart" type="primary">清空</el-button>
-      <el-button class="btn-save" @click="saveChart" type="success">保存</el-button>
       <div class="workplace" id="workplace">
         <chart-node
           v-for="(item, idx) in chartData.nodes"
@@ -29,6 +8,18 @@
           :key="idx"
           @edit="editNode(item,idx)"
         ></chart-node>
+
+        <div class="group"
+             :id="item.id"
+             :group="item.id"
+             v-for="item in groupList"
+             :style="item.groupStyle">
+          <div class="titleName">
+            <p>
+              {{item.name}}
+            </p>
+          </div>
+        </div>
       </div>
     </el-main>
 
@@ -49,7 +40,7 @@
       <div slot="title">属性设置</div>
       <el-form :model="nodeForm" ref="nodeForm" :label-width="formLabelWidth">
         <!--<el-form-item :label="obj.displayName" v-for="(obj, idx) in busiTypePropsMap[currEditItem.busiType]" :key="idx">-->
-          <!--<el-input type="text" v-model="nodeForm[obj.keyName]" />-->
+        <!--<el-input type="text" v-model="nodeForm[obj.keyName]" />-->
         <!--</el-form-item>-->
         <el-form-item label="节点名称" >
           <el-input v-model="nodeForm.name" placeholder="请输入节点名称" style="width:100%"></el-input>
@@ -64,6 +55,18 @@
         </el-form-item>
       </el-form>
     </el-dialog>
+
+    <el-dialog title="属性设置" :visible.sync="dialogFormVisible3">
+      <el-form  :label-width="formLabelWidth">
+        <el-form-item label="连接线说明">
+          <el-input v-model="lineDescName" auto-complete="off" placeholder="请输入连接线说明"></el-input>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="cancelDescSave">取 消</el-button>
+        <el-button type="primary" @click="submitDescSave">确 定</el-button>
+      </div>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -73,11 +76,16 @@
     name: "DemoChart",
     data() {
       return {
+        currSourceId:'', //当前连线点击的sourceId
+        currTargetId:'', //当前连线点击的targetId
         timer:0,
         connShow:true,
         currScenarioIdx: -1,
         dialogFormVisible: false,
         dialogFormVisible2: false,
+        dialogFormVisible3:false,
+        conn:'',
+        lineDescName:'', //连线说明
         chartForm: {
           name: ""
         },
@@ -85,23 +93,41 @@
         nodeForm: {
           name:''
         },
-        scenarioList:[
-          {
-          'name': '场景一',
-          'id': 'json.1.json'
-          }
-        ],
-        tasks: this.$store.state.flow.tasks,
         jsp: null,
         chartData: {
           nodes: [],
           connections: [],
           props: {}
         },
-        busiTypePropsMap: {
-          'emr': [{displayName: '姓名', keyName: ' '}],
-          'xdata': [{displayName: '姓名', keyName: 'name'},{displayName: '年龄', keyName: 'age'}],
-        },
+        groupList:[
+          {
+            id:'01a5f6da-e2e0-4f5e-bb4f-b09987ee5a13',
+            name:'客户端',
+            type:'group',
+            groupStyle:{
+              width:'100%',
+              height:'300px'
+            }
+          },
+          {
+            id:'5318d603-e3cc-4c62-ac14-419a13b554f1',
+            name:'服务端',
+            type:'group',
+            groupStyle:{
+              width:'100%',
+              height:'300px'
+            }
+          },
+          {
+            id: '5318d603-2323-4c62-ac14-419a13b554f1',
+            name: '后端存储',
+            type: 'group',
+            groupStyle: {
+              width: '100%',
+              height: '300px'
+            }
+          },
+        ],
         currEditItem: {
           busiType: ""
         }
@@ -116,7 +142,8 @@
             "Blank",
             { cssClass: "chart-dot", hoverClass: "chart-dot-hover", radius: 5 }
           ],
-          Connector: "Straight",
+          //Connector: "Straight",
+          Connector:["Flowchart", { stub: [0, 0], gap: 0, cornerRadius: 0, alwaysRespectStubs: true }],
           HoverPaintStyle: { stroke: "#1e8151", strokeWidth: 2 },
           ConnectionOverlays: [
             [
@@ -137,14 +164,32 @@
         this.jsp = instance;
         var canvas = document.getElementById("workplace");
 
-        //删除连接线
-        instance.bind("dblclick", function(c) {
-          instance.deleteConnection(c);
-          let arr = _self.chartData.connections
-          let idx = arr.findIndex(item => {
-            return item.sourceId === c.sourceId &&  item.targetId === c.targetId;
+        //点击连接线
+        instance.bind("click", function(c) {
+
+          //console.log(c)
+          _self.lineDescName = ''
+          _self.currSourceId = c.sourceId
+          _self.currTargetId = c.targetId
+          _self.conn = _self.jsp.connect({
+            source:c.sourceId,
+            target:c.targetId
           });
-          arr.splice(idx,1)
+          let conns = _self.chartData.connections
+
+          conns.forEach((item,index) => {
+            if(item.sourceId === _self.currSourceId && item.targetId === _self.currTargetId){
+              _self.lineDescName = conns[index].label
+            }
+          });
+          instance.deleteConnection(c);
+          _self.dialogFormVisible3 = true
+           instance.deleteConnection(c);
+          // let arr = _self.chartData.connections
+          // let idx = arr.findIndex(item => {
+          //   return item.sourceId === c.sourceId &&  item.targetId === c.targetId;
+          // });
+          // arr.splice(idx,1)
         });
 
         // 监听 connection 事件
@@ -218,11 +263,31 @@
         });
       });
 
-      // this.$nextTick(() => {
-      //   _self.handleClickTemp('json.1.json',0)
-      // })
+      this.$nextTick(() => {
+        _self.handleClickTemp('json.3.json',0)
+      })
     },
     methods: {
+      //新增连接线
+      submitDescSave(){
+        let _self = this
+        let conns = _self.chartData.connections
+        console.log(_self.lineDescName)
+
+        conns.forEach((item,index) => {
+          if(item.sourceId === _self.currSourceId && item.targetId === _self.currTargetId){
+            conns[index].label=_self.lineDescName
+          }
+        });
+        //console.log( this.lineDescName)
+        this.conn.setLabel(this.lineDescName)
+        this.dialogFormVisible3 = false
+        this.$message.success('保存成功')
+      },
+      //取消连接线
+      cancelDescSave(){
+        this.dialogFormVisible3 = false
+      },
       initConn (connection) {
         let _self = this
         var overlay = connection.getOverlay("Arrow");
@@ -285,12 +350,6 @@
           allowLoopback: false
         });
       },
-      // 保存
-      saveChart() {
-        console.log( this.chartData)  //节点数据)
-       // console.log(JSON.stringify(this.chartData));
-        this.dialogFormVisible = true;
-      },
       /**
        * @description 取消保存
        */
@@ -317,7 +376,7 @@
           connections: [],
           props: {}
         };
-        this.jsp.empty("workplace");
+        //this.jsp.empty("workplace");
         if (id) {
           let url = "./static/json/" + id;
           this.$axios.get(url).then(res => {
@@ -329,7 +388,8 @@
               this.chartData.connections.forEach(item => {
                 this.jsp.connect({
                   source: item.sourceId,
-                  target: item.targetId
+                  target: item.targetId,
+                  label:item.label
                 });
               });
             });
@@ -380,12 +440,7 @@
       cancelSaveNodeEdit() {
         this.dialogFormVisible2 = false;
       },
-      /**
-       * @description 清空
-       */
-      clearChart () {
-        this.jsp.empty("workplace");
-      },
+
       /**
        * @description 模拟箭头动态循环
        */
@@ -422,63 +477,117 @@
     }
   };
 </script>
-<style lang="scss" scoped>
-  @import "../../assets/style/index.scss";
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-  }
-  .el-main {
-    position: relative;
-  }
-  .workplace {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  #start {
-    top: 50px;
-    left: 50px;
-  }
-  .btn-clear {
-    position: absolute;
-    cursor: pointer;
-    top: 10px;
-    right: 100px;
-    z-index: 1;
-  }
-  .item {
-    text-align: center;
-    margin: 0;
-    cursor: pointer;
-    i {
-      width: 60px;
-      height: 60px;
-      line-height: 60px;
-      background-size: 85%;
-      display: inline-block;
-      background-repeat: no-repeat;
-      background-position: center;
-      font-size: 20px;
-      color: #409eff;
-      cursor: pointer;
-      margin-bottom: 5px;
-      margin-right: 0!important;
-      -ms-touch-action: none;
-      touch-action: none;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+<style lang="scss" >
+  .work-main{
+    min-height:1000px!important;
+    .el-main{
+      min-height:1000px!important;
+      overflow: unset!important;
     }
-    span {
-      display: block;
+    .jtk-overlay{
+      background-color:#2d8cf0;
+      color:#fff!important;
+      padding:3px;
+    }
+  }
+</style>
+<style lang="scss" scoped>
+  @import "../../../assets/style/index";
+  .work-main{
+    .el-aside {
+      background-color: #D3DCE6;
+      color: #333;
+    }
+    .el-main {
+      position: relative;
+    }
+    .workplace {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      top: 20px;
+    }
+    #start {
+      top: 50px;
+      left: 50px;
+    }
+    .btn-clear {
+      position: absolute;
+      cursor: pointer;
+      top: 10px;
+      right: 100px;
+      z-index: 1;
+    }
+    .item {
+      text-align: center;
+      margin: 0;
+      cursor: pointer;
+      i {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        background-size: 85%;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-size: 20px;
+        color: #409eff;
+        cursor: pointer;
+        margin-bottom: 5px;
+        margin-right: 0!important;
+        -ms-touch-action: none;
+        touch-action: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      span {
+        display: block;
+      }
+    }
+
+    .box-card .card-body .item {
+      display: inline-block;
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+    .group {
+      /*border: 1px solid #EFF4f8;*/
+      position: relative;
+      .titleName{
+        float: left;
+        display: block;
+        background-color: #EFF4f8;
+        color: #333;
+        padding: 10px;
+        height:100%;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*writing-mode: vertical-lr;*/
+        /*-webkit-writing-mode: vertical-lr;*/
+        /*-ms-writing-mode: vertical-lr;*/
+        text-align:center;
+        letter-spacing:2px;
+        width: 50px;
+      }
+      p {
+        margin-top: -24px;
+        margin-left: -8px;
+        position: absolute;
+        top: 50%;
+        transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        filter:progid:DXImageTransform.Microsoft.BasicImage(Rotation=1); //IE滤镜 rotation 有4个值 0 1 2 3 ；0是不旋转 1=90度 2=180度 3=270度
+      }
+      &:hover{
+        //border: 1px solid #5c96bc;
+      }
     }
   }
 
-  .box-card .card-body .item {
-    display: inline-block;
-    padding-left: 10px;
-    padding-top: 10px;
-  }
 </style>

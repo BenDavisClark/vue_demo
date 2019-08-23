@@ -320,10 +320,10 @@
 </script>
 
 <style scoped lang="scss">
-  @import "../../assets/css/demo.css";
-  @import "../../assets/css/jsplumbtoolkit-defaults.css";
-  @import "../../assets/css/jsplumbtoolkit-demo.css";
-  @import "../../assets/css/main.css";
+  @import "../../../assets/css/demo.css";
+  @import "../../../assets/css/jsplumbtoolkit-defaults.css";
+  @import "../../../assets/css/jsplumbtoolkit-demo.css";
+  @import "../../../assets/css/main.css";
 
   #flowchartCanvasData {
     .flowchart-demo .window {

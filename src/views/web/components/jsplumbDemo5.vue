@@ -1,52 +1,15 @@
 <template>
-  <div data-demo-id="flowchart" id="flowchartDemo">
-    <div>
-      <el-button  @click="zoomIn()">放大</el-button>
-      <el-button @click="zoomOut()">缩小</el-button>
-    </div>
+  <div data-demo-id="flowchart" id="flowchartDemos">
     <div class="jtk-demo-main" >
       <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
 
         <template v-for="item in nodeList" >
-          <div class="window jtk-node flowchartDagre" :class="item.id"  >
-            <div class='dagreGraphDiv mdStyleFlow' v-if="item.type==='system'" :id="item.id">
-              <p >
-                <span class='mdTitle'>系统</span>
-                <span class='mdName'>{{ item.mdName }}</span>
-              </p>
-            </div>
-
-            <div class='dagreGraphDiv mdStyleFlow' v-if="item.type==='db'">
-              <p :id="item.id">
-                <span class='mdTitle'>数据库</span>
-                <span class='mdName'>{{ item.mdName }}</span></p>
-            </div>
-
-            <div class='dagreGraphDiv' v-if="item.type==='table'">
-              <p>
-                <span class='mdTitle'>数据库</span>
-                <span class='mdName'>{{ item.mdName }}</span></p>
-              <p class='tableP' :id="item.id">
-                <span class='tableName'>{{item.tableName}}</span>
-              </p>
-            </div>
-
-            <div class='dagreGraphDiv' v-if="item.type==='field'">
-              <p>
-                <span class='mdTitle'>数据库</span>
-                <span class='mdName'>{{ item.mdName }}</span></p>
-              <p class='tableP' ><span class='tableName'>{{item.tableName}}</span></p>
-              <ul>
-                <li v-if="fieldName === item.selectedFieldName" :id="item.id"  v-for="fieldName in item.fieldName">{{ fieldName }}</li>
-                <li v-else>{{ fieldName }}</li>
-              </ul>
-            </div>
-            </div>
-
-          <!--<div class="window dagreGraphDiv" :id="item.id" :class="item.id" v-else>-->
-            <!--<p ><span class='mdTitle'>系统</span><span class='mdName'>{{ item.mdName }}</span></p>-->
-          <!--</div>-->
-
+          <div class='dagreGraphDiv' :id=item.id>
+            <p class='tableP' ><span class='tableName'>{{item.name}}</span></p>
+            <ul v-if="item.children" >
+              <li style="border:1px solid #ccc;" v-for="child in item.children" class="group" :id=child.id>{{child.name}}</li>
+            </ul>
+          </div>
         </template>
       </div>
     </div>
@@ -57,202 +20,114 @@
   export default {
     data () {
       return {
-         baseZoom : 1,
-         currHeight:0,
-         widthOffest:25,
-         topValue1:100,
-         topValue2:100,
-         topValue3:100,
-         topValue4:100,
-         topValue5:100,
-         topValue6:100,
-         topValue7:100,
-         topValue8:100,
-         topValue9:100,
-         topValue10:100,
-         topValue11:100,
-         topValue12:100,
-         nowHeight1:0,
-         nowHeight2:0,
-         nowHeight3:0,
-         nowHeight4:0,
-         nowHeight5:0,
-         nowHeight6:0,
-         nowHeight7:0,
-         nowHeight8:0,
-         nowHeight9:0,
-         nowHeight10:0,
-         nowHeight11:0,
-         nowHeight12:0,
-         bodyList :[],
-         loc : 0,
-         nodeList:[
+        baseZoom : 1,
+        currHeight:0,
+        widthOffest:25,
+        topValue1:100,
+        topValue2:100,
+        topValue3:100,
+        topValue4:100,
+        topValue5:100,
+        topValue6:100,
+        topValue7:100,
+        topValue8:100,
+        topValue9:100,
+        topValue10:100,
+        topValue11:100,
+        topValue12:100,
+        nowHeight1:0,
+        nowHeight2:0,
+        nowHeight3:0,
+        nowHeight4:0,
+        nowHeight5:0,
+        nowHeight6:0,
+        nowHeight7:0,
+        nowHeight8:0,
+        nowHeight9:0,
+        nowHeight10:0,
+        nowHeight11:0,
+        nowHeight12:0,
+        bodyList :[],
+        loc : 0,
+        nodeList:[
           {
             level:0,
-            type:'field',
-            id:'Window1',
             isRoot:true,
-            mdName:'信贷核心库',
-            tableName:'信贷核心表',
-            selectedFieldName:'测试字段1',
-            fieldName:['测试字段1','测试字段2','测试字段3']
+            id:"Window1",
+            name:'信贷核心表',
+            children:[{
+              name:'信贷核心表字段1',
+              type:'field',
+              id:'Window1-1',
+              isRoot:true
+            },
+              {
+                name:'信贷核心表字段2',
+                type:'field',
+                id:'Window1-2',
+                isRoot:true
+              }
+          ]
           },
           {
             level:1,
             id:'Window2',
-            type:'field',
-            mdName:'操作平台库',
-            tableName:'操作平台表',
-            selectedFieldName:'测试字段1',
-            fieldName:['测试字段1','测试字段2','测试字段3']
+            name:'操作平台表',
+            children:[{
+              name:'信贷核心表字段1',
+              type:'field',
+              id:'Window2-1'
+            },
+              {
+                name:'信贷核心表字段2',
+                type:'field',
+                id:'Window2-2'
+              },
+              {
+                name:'信贷核心表字段3',
+                type:'field',
+                id:'Window2-3'
+              }]
           },
-           {
-             level:1,
-             id:'Window3',
-             type:'field',
-             mdName:'测试数据库',
-             tableName:'操作平台表',
-             selectedFieldName:'测试字段3',
-             fieldName:['测试字段1','测试字段2','测试字段3'],
-           },
-           {
-             level:1,
-             type:'system',
-             id:'Window4',
-             mdName:'调度引擎',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:1,
-             type:'system',
-             id:'Window5',
-             mdName:'系统核心',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:2,
-             id:'Window6',
-             type:'field',
-             mdName:'测试数据库3',
-             tableName:'测试表',
-             selectedFieldName:'测试字段3',
-             fieldName:['测试字段1','测试字段2','测试字段3']
-           },
-           {
-             level:2,
-             type:'system',
-             id:'Window7',
-             mdName:'系统核心1',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:2,
-             type:'system',
-             id:'Window8',
-             mdName:'测试系统',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:2,
-             id:'Window9',
-             type:'table',
-             mdName:'测试数据库4',
-             tableName:'测试表',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:3,
-             type:'system',
-             id:'Window10',
-             mdName:'测试系统1',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:3,
-             type:'system',
-             id:'Window11',
-             mdName:'测试系统2',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           },
-           {
-             level:4,
-             type:'system',
-             id:'Window12',
-             mdName:'测试系统3',
-             tableName:'',
-             selectedFieldName:'',
-             fieldName:[]
-           }
+          {
+            level:2,
+            id:'Window3',
+            name:'测试表',
+            children:[{
+              name:'信贷核心表字段1',
+              type:'field',
+              id:'Window3-1',
+              isRoot:true
+            },
+              {
+                name:'信贷核心表字段2',
+                type:'field',
+                id:'Window3-2',
+                isRoot:true
+              }]
+          }
         ],
 
         edgesList:[
           {
-            from:'Window1',
-            to:'Window5',
+            from:'Window1-1',
+            to:'Window2-1',
             label:'映射'
           },
           {
-            from:'Window1',
-            to:'Window2',
-            label:'拷贝'
+            from:'Window2-1',
+            to:'Window2-2',
+            label:'映射'
           },
           {
-            from:'Window1',
-            to:'Window4',
-            label:'出发'
+            from:'Window2-2',
+            to:'Window3-2',
+            label:'映射'
           },
           {
-            from:'Window1',
-            to:'Window3',
-            label:'重构'
-          },
-          {
-            from:'Window2',
-            to:'Window7',
-            label:'测试'
-          },
-          {
-            from:'Window2',
-            to:'Window6',
-            label:'测试'
-          },
-          {
-            from:'Window3',
-            to:'Window8',
-            label:'测试'
-          },
-          {
-            from:'Window4',
-            to:'Window9',
-            label:'测试'
-          },
-          {
-            from:'Window7',
-            to:'Window10',
-            label:'测试1'
-          },
-          {
-            from:'Window7',
-            to:'Window11',
-            label:'测试3'
-          },
-          {
-            from:'Window11',
-            to:'Window12',
-            label:'测试5'
+            from:'Window2-2',
+            to:'Window2-3',
+            label:'映射'
           }
         ]
       }
@@ -260,7 +135,7 @@
     created() {
     },
     mounted () {
-      this.initData()
+      //this.initData()
       this.currHeight = document.getElementById("canvas").offsetHeight-72
       var that = this
       //初始化jsPlumb
@@ -269,20 +144,19 @@
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
         // 用于装饰每个连接的叠加层
         ConnectionOverlays: [
-        /*  ["Custom", {
-            create:function(component) {
-                return $("<select id='myDropDown'><option value='foo'>foo</option><option value='bar'>bar</option></select>");
-            },
-            location:0.7,
-            id:"customOverlay"
-          }]*/
-         [ "Arrow", {
-            location: [0] ,
+          /*  ["Custom", {
+              create:function(component) {
+                  return $("<select id='myDropDown'><option value='foo'>foo</option><option value='bar'>bar</option></select>");
+              },
+              location:0.7,
+              id:"customOverlay"
+            }]*/
+          [ "Arrow", {
+            location: [1] ,
             visible:true,
-            width:11,
-            length:11,
+            width:5,
+            length:5,
             id:"ARROW",
-            paintStyle:{ stroke: "red", strokeWidth: 4 ,fill:"red",fillStyle:"red" },
             events:{
               click:function() { alert("you clicked on the arrow overlay")}
             }
@@ -314,14 +188,14 @@
           strokeWidth: 1.5,
           stroke: "#CFDBE1",
           joinstyle: "round",
-          outlineStroke: "white",
+          outlineStroke: "CFDBE1",
           outlineWidth: 2
         },
         // 连接线覆盖样式
         connectorHoverStyle = {
           strokeWidth: 2,
           stroke: "#43A5DF",
-          outlineWidth: 5,
+          outlineWidth: 2,
           outlineStroke: "white"
         },
         endpointHoverStyle = {
@@ -330,17 +204,18 @@
         },
         // 源端点的定义
         sourceEndpoint = {
-          endpoint: "Dot",
-        /*  paintStyle: {
-            stroke: "#7AB02C",
-            fill: "transparent",
-            radius: 7,
-            strokeWidth: 1
-          },*/
+          endpoint: "Blank",
+          /*  paintStyle: {
+              stroke: "#7AB02C",
+              fill: "transparent",
+              radius: 7,
+              strokeWidth: 1
+            },*/
           paintStyle: { fill: "#CFDBE1", radius: 4 },
           maxConnections: -1,
           isSource: true,
-          connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],//连接线的样式种类有[Bezier],[Flowchart],[StateMachine ],[Straight ]
+          connector: ["StateMachine", {curviness: -20}],//连接线的样式种类有[Bezier],[Flowchart],[StateMachine ],[Straight ]
+          Anchor:"Center",
           connectorStyle: connectorPaintStyle,
           hoverPaintStyle: endpointHoverStyle,
           connectorHoverStyle: connectorHoverStyle,
@@ -354,29 +229,13 @@
             } ]
           ]
         },
-        // 目标端点的定义（将在用户拖动连接时显示）
-        targetEndpoint = {
-          endpoint: "Dot",
-          paintStyle: { fill: "#7AB02C", radius: 5 },
-          hoverPaintStyle: endpointHoverStyle,
-          maxConnections: -1,
-          dropOptions: { hoverClass: "hover", activeClass: "active" },
-          connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],//连接线的样式种类有[Bezier],[Flowchart],[StateMachine ],[Straight ]
-          connectorStyle: connectorPaintStyle,
-          hoverPaintStyle: endpointHoverStyle,
-          connectorHoverStyle: connectorHoverStyle,
-          isTarget: true,
-          overlays: [
-            [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
-          ]
-        },
         init = function (connection) {
-          var overlay = connection.getOverlay("ARROW");
+          //var overlay = connection.getOverlay("ARROW");
           //var loc =parseInt((overlay.getLocation()).join(''))
-          that.loopHandle(overlay)
-          var timer =  setInterval(res=>{
-              that.loopHandle(overlay)
-          },6000)
+          // that.loopHandle(overlay)
+          // var timer =  setInterval(res=>{
+          //   that.loopHandle(overlay)
+          // },6000)
           //connection.getOverlay("label").setLabel(connection.sourceId.substring(15) + "-" + connection.targetId.substring(15));
           //connection.getOverlay("label").setLabel("映射");
         };
@@ -387,6 +246,7 @@
       var _addEndpoints = function (toId, sourceAnchors, targetAnchors) {
         for (var i = 0; i < sourceAnchors.length; i++) {
           var sourceUUID = toId + sourceAnchors[i];
+          console.log(sourceUUID)
           instance.addEndpoint(toId, sourceEndpoint, {
             anchor: sourceAnchors[i], uuid: sourceUUID
           });
@@ -399,7 +259,7 @@
         // }
       };
 
-      that.calculPosition() //计算位置
+      //that.calculPosition() //计算位置
 
       // 初始化节点
       instance.batch(function () {
@@ -407,10 +267,8 @@
         //添加锚点
         let nodeList = that.nodeList;
         for(let i = 0;i< nodeList.length; i++) {
-          if(i>0){
-            _addEndpoints(nodeList[i].id, ["LeftMiddle", "RightMiddle"]);
-          }else{
-            _addEndpoints(nodeList[i].id, ["RightMiddle"]);
+          for(let j=0;j<nodeList[i].children.length;j++){
+            _addEndpoints(nodeList[i].children[j].id, ["Top","Bottom","Right","Left"]);
           }
         }
 
@@ -421,13 +279,20 @@
         });
 
         // 使所有节点可拖动
-        instance.draggable(jsPlumb.getSelector(".flowchart-demo .window"), { grid: [20, 20] });
+        instance.draggable(jsPlumb.getSelector(".flowchart-demo .group"), { grid: [20, 20] });
 
-        // 连接对象
-        let edgesList = that.edgesList
-        for(let i=0;i<edgesList.length;i++){
-          instance.connect({uuids: [edgesList[i].from+"RightMiddle", edgesList[i].to+"LeftMiddle"]});
-        }
+        //连接对象
+        // let edgesList = that.edgesList
+        // for(let i=0;i<edgesList.length;i++){
+        //   instance.connect({uuids: [edgesList[i].from+"Right", edgesList[i].to+"Left"]});
+        // }
+        instance.connect({uuids: ["Window1-1Right", "Window2-1Left"]});
+        instance.connect({uuids: ["Window2-1Bottom", "Window2-2Top"]});
+        instance.connect({uuids: ["Window2-2Bottom", "Window2-3Top"]});
+        instance.connect({uuids: ["Window2-2Right", "Window3-1Left"]});
+        instance.connect({uuids: ["Window2-1Bottom", "Window2-1Bottom"]});
+        // instance.connect({ source: "Window1-1", target: "Window2-1"});
+        // instance.connect({ source: "Window2-1", target: "Window2-2"});
 
         // 监听连线点击事件，并提供删除点击连接事件
         instance.bind("click", function (conn, originalEvent) {
@@ -544,17 +409,17 @@
           for(let j=0;j<nodeList.length;j++){
             let level1ListObj = {}
             //组装level1数据
-              if(edgesList[i].from === 'Window'+num){
-                if(edgesList[i].to === nodeList[j].id){
-                  level1ListObj['level'] = level
-                  level1ListObj['type'] = nodeList[j].type
-                  level1ListObj['id'] = nodeList[j].id
-                  level1ListObj['mdName'] = nodeList[j].mdName
-                  level1ListObj['tableName'] = nodeList[j].tableName
-                  level1ListObj['selectedFieldName'] = nodeList[j].selectedFieldName
-                  level1ListObj['fieldName'] = nodeList[j].fieldName
-                  level1List.push(level1ListObj)
-                }
+            if(edgesList[i].from === 'Window'+num){
+              if(edgesList[i].to === nodeList[j].id){
+                level1ListObj['level'] = level
+                level1ListObj['type'] = nodeList[j].type
+                level1ListObj['id'] = nodeList[j].id
+                level1ListObj['mdName'] = nodeList[j].mdName
+                level1ListObj['tableName'] = nodeList[j].tableName
+                level1ListObj['selectedFieldName'] = nodeList[j].selectedFieldName
+                level1ListObj['fieldName'] = nodeList[j].fieldName
+                level1List.push(level1ListObj)
+              }
             }
             //组装level2数据
             for(let k=0;k<level1List.length;k++){
@@ -687,142 +552,50 @@
   }
 </script>
 <style scoped lang="scss">
-  @import "../../assets/css/demo.css";
-  @import "../../assets/css/jsplumbtoolkit-defaults.css";
-  @import "../../assets/css/jsplumbtoolkit-demo.css";
-  @import "../../assets/css/main.css";
+  @import "../../../assets/css/demo.css";
+  @import "../../../assets/css/jsplumbtoolkit-defaults.css";
+  @import "../../../assets/css/jsplumbtoolkit-demo.css";
+  @import "../../../assets/css/main.css";
 
-  #flowchartDemo{
-   /* .horse-run {
-      position: absolute;
-      !* 当前规范上的语法 2016年12月支持 *!
-      offset-path: path("M10,80 q100,120 120,20 q140,-50 160,0");
-      animation: move 3s linear infinite;
-      @keyframes move {
-        !* 之前语法 *!
-        100% {
-          motion-offset: 100%;
-        }
-        !* 当前规范语法 *!
-        100% {
-          offset-distance: 100%;
-        }
-      }
-    }*/
-      .mdStyleFlow{
-        height:40px;
-        width:auto;
-        min-width:140px;
-        p{
-          line-height: 30px!important;
-          float: left;
-          span{
-            float:left;
-          }
-          .mdTitle{
-            height: 28px;
-            line-height: 25px;
-          }
-        }
-      }
-      .flowchartDagre{
-        height:auto!important;
-        width:auto!important;
-        padding:0!important;
-      }
+  #flowchartDemos{
     //其它节点
-      .dagreGraphDiv{
-        border:1px solid #CFDBE1;
-        border-radius: 3px;
+    .dagreGraphDiv{
+      position:absolute;
+      border:1px solid #CFDBE1;
+      border-radius: 3px;
+      width: auto;
+      min-width: 140px;
+      p{
         width: auto;
-        min-width: 140px;
-        p{
-          width: auto;
-          line-height:20px;
-          color:#fff;
-          padding: 5px;
-          text-align: left;
-          .mdTitle{
-            font-size:13px;
-            background-color: #CFDBE1;
-            color:#333;
-            padding:3px;
-            border-radius: 3px;
-          }
-          .mdName{
-            padding:0 5px;
-            color:#333;
-            font-size: 14px;
-          }
-        }
-        .tableP{
-          background: url('../../assets/images/Bd-1.png' );
-          background-color: #CFDBE1;
-          background-repeat: no-repeat;
-          border-radius: 2px;
-          background-size: 17px 17px;
-          background-position: 7px 3px;
+        line-height:20px;
+        color:#fff;
+        padding: 5px;
+        text-align: left;
+        .mdName{
+          padding:0 5px;
           color:#333;
-          padding: 0 28px;
-          height: 22px;
-          border-radius: 2px;
-          font-size:14px;
-        }
-        ul{
-          li{
-            text-align: left;
-            padding-left:18px;
-            line-height: 20px;
-            font-size: 13px;
-          }
+          font-size: 14px;
         }
       }
-    //根节点
-    .Window1{
-      .dagreGraphDiv{
-        border:1px solid #43A5DF;
-        border-radius: 3px;
-        width: auto;
-        min-width: 140px;
-        p{
-          width: auto;
-          line-height:20px;
-          color:#fff;
-          padding: 5px;
-          text-align: left;
-          .mdTitle{
-            font-size:13px;
-            background-color: #43A5DF;
-            color:#fff;
-            padding:3px;
-            border-radius: 3px;
-          }
-          .mdName{
-            font-size: 14px;
-            padding:0 5px;
-            color:#43A5DF;
-          }
-        }
-        .tableP{
-          background: url('../../assets/images/Bd.png' );
-          background-color: #43A5DF;
-          background-repeat: no-repeat;
-          border-radius: 2px;
-          background-size: 17px 17px;
-          background-position: 7px 3px;
-          color:#fff;
-          padding: 0 28px;
-          height: 22px;
-          border-radius: 2px;
-          font-size:14px;
-        }
-        ul{
-          li{
-            text-align: left;
-            padding-left:18px;
-            line-height: 20px;
-            font-size: 13px;
-          }
+      .tableP{
+        background: url('../../../assets/images/Bd-1.png');
+        background-color: #CFDBE1;
+        background-repeat: no-repeat;
+        border-radius: 2px;
+        background-size: 17px 17px;
+        background-position: 7px 3px;
+        color:#333;
+        padding: 0 28px;
+        height: 22px;
+        border-radius: 2px;
+        font-size:14px;
+      }
+      ul{
+        li{
+          line-height: 30px;
+          font-size: 13px;
+          margin: 35px 10px;
+          text-align: center;
         }
       }
     }
@@ -832,6 +605,11 @@
       width: 100%;
       overflow: hidden;
     }
+
+    #Window1 { left:20px;top:150px; }
+    #Window2 { left:250px;top:150px; }
+    #Window3 { left:500px;top:150px; }
+    #Window4 { left:750px;top:150px; }
   }
 
 </style>

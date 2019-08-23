@@ -135,7 +135,7 @@
   };
 </script>
 <style lang="scss" scoped>
-  @import "../../assets/style/index.scss";
+  @import "../../../assets/style/index";
   .el-aside {
     background-color: #D3DCE6;
     color: #333;

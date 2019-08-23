@@ -19,116 +19,14 @@ import 'jsplumb/css/jsplumbtoolkit-defaults.css';
 
 //jquery ui
 import 'jquery-ui-dist/jquery-ui'
-import {
-  Menu,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  MenuItem,
-  Submenu,
-  Icon,
-  Breadcrumb,
-  BreadcrumbItem,
-  Row,
-  Col,
-  Form,
-  FormItem,
-  Radio,
-  RadioGroup,
-  Checkbox,
-  CheckboxGroup,
-  Input,
-  Button,
-  Dialog,
-  Upload,
-  Switch,
-  Option,
-  DatePicker,
-  TimeSelect,
-  TimePicker,
-  Select,
-  Table,
-  TableColumn,
-  Loading,
-  Pagination,
-  Cascader,
-  Tree,
-  MessageBox,
-  Message,
-  Carousel,
-  CarouselItem,
-  Tag,
-  Card,
-  Progress,
-  Tooltip,
-  Transfer,
-  Popover,
-  Container,
-  Header,
-  Aside,
-  Main,
-  Footer
-} from 'element-ui'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import _ from 'lodash'
 Object.defineProperty(Vue.prototype, '_', { value: _ })
 
-Vue.use(Menu)
-Vue.use(Dropdown)
-Vue.use(DropdownMenu)
-Vue.use(MenuItem)
-Vue.use(Submenu)
-Vue.use(Icon)
-Vue.use(DropdownItem)
-Vue.use(Breadcrumb)
-Vue.use(BreadcrumbItem)
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Form)
-Vue.use(FormItem)
-Vue.use(Radio)
-Vue.use(RadioGroup)
-Vue.use(Checkbox)
-Vue.use(CheckboxGroup)
-Vue.use(Input)
-Vue.use(Switch)
-Vue.use(Button)
-Vue.use(Dialog)
-Vue.use(Upload)
-Vue.use(DatePicker)
-Vue.use(TimePicker)
-Vue.use(TimeSelect)
-Vue.use(Option)
-Vue.use(Select)
-Vue.use(Table)
-Vue.use(Tree)
-Vue.use(TableColumn)
-Vue.use(Pagination)
-Vue.use(Cascader)
-Vue.use(Carousel)
-Vue.use(CarouselItem)
-Vue.use(Tag)
-Vue.use(Card)
-Vue.use(Progress)
-Vue.use(Tooltip)
-Vue.use(Transfer)
-Vue.use(Popover)
-Vue.use(Container)
-Vue.use(Header)
-Vue.use(Aside)
-Vue.use(Main)
-Vue.use(Footer)
-Vue.use(Loading.directive)
-Vue.use({
-  i18n: (key, value) => i18n.t(key, value)
-})
+Vue.use(ElementUI);
 Vue.use(preview)
-Vue.prototype.$loading = Loading.service
-Vue.prototype.$msgbox = MessageBox
-Vue.prototype.$alert = MessageBox.alert
-Vue.prototype.$confirm = MessageBox.confirm
-Vue.prototype.$prompt = MessageBox.prompt
-Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios;

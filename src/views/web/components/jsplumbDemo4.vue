@@ -196,10 +196,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  @import "../../assets/css/demo.css";
-  @import "../../assets/css/jsplumbtoolkit-defaults.css";
-  @import "../../assets/css/jsplumbtoolkit-demo.css";
-  @import "../../assets/css/main.css";
+  @import "../../../assets/css/demo.css";
+  @import "../../../assets/css/jsplumbtoolkit-defaults.css";
+  @import "../../../assets/css/jsplumbtoolkit-demo.css";
+  @import "../../../assets/css/main.css";
   .w {
     position:absolute;
     width:30px;

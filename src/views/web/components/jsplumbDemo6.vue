@@ -124,15 +124,15 @@
       </span>
     </el-dialog>
 
-
     <div id="canvasDiv" style='display: none;'></div>
 
   </el-container>
 </template>
 
 <script>
-  import ChartNode from '../../components/jsplumb/ChartNode'
+  import ChartNode from '../../../components/jsplumb/ChartNode'
   import html2canvas from 'html2canvas'
+  import canvg from 'canvg'
   export default {
     name: 'DemoChart',
     data () {
@@ -310,9 +310,9 @@
           })
         })
         //
-        // this.groupChartList.forEach((item, index) => {
-        //   this.addGroup(item)
-        // })
+        this.groupChartList.forEach((item, index) => {
+          this.addGroup(item)
+        })
 
         // this.$nextTick(() => {
         //   this.handleClickTemp('json.2.json',0)
@@ -655,12 +655,14 @@
       cancelSaveNodeEdit () {
         this.dialogFormVisible2 = false
       },
+
       /**
        * @description 保存为图片
        */
       saveChartImg () {
         var statemachinediv = document.getElementById('workplace')
-        html2canvas(statemachinediv).then(canvas => {
+
+            html2canvas(statemachinediv).then(canvas => {
           //   onrendered: function(canvas) {
           $('#canvasDiv').empty()
           document.getElementById('canvasDiv').appendChild(canvas)
@@ -670,19 +672,21 @@
               var svgExample = this
               var serializer = new XMLSerializer()
               var svgMarkup = serializer.serializeToString(svgExample)
-              //console.log(svgMarkup)
-              if (svgMarkup.indexOf('_jsPlumb_connector') > -1) {
-                var leftIndex = svgMarkup.indexOf('left: ')
+              if (svgMarkup.indexOf('jtk-connector') > -1) {
+
+                var leftIndex = svgMarkup.indexOf('left')
                 var endOfLeft = svgMarkup.indexOf('px', leftIndex)
                 var leftPosition = svgMarkup.substring(
-                  leftIndex + 6,
+                  leftIndex + 5,
                   endOfLeft
                 )
+
                 var left = parseInt(leftPosition)
 
-                var topIndex = svgMarkup.indexOf('top: ')
+                var topIndex = svgMarkup.indexOf('top')
                 var endOfTop = svgMarkup.indexOf('px', topIndex)
-                var topPosition = svgMarkup.substring(topIndex + 5, endOfTop)
+
+                var topPosition = svgMarkup.substring(topIndex + 4, endOfTop)
                 var top = parseInt(topPosition)
 
                 svgMarkup = svgMarkup.replace(
@@ -691,8 +695,8 @@
                 )
 
                 var connectorCanvas = document.createElement('canvas')
-                canvg(connectorCanvas, svgMarkup) //add connector to canvas
 
+                canvg(connectorCanvas, svgMarkup) //add connector to canvas
                 var context = canvas.getContext('2d')
                 context.drawImage(connectorCanvas, left, top)
               }
@@ -701,43 +705,43 @@
             }
           })
           let ctx = canvas.getContext('2d')
-          var image = canvas
-            .toDataURL('image/png')
-            .replace('image/png', 'image/octet-stream')
-          // window.location.href=image; // it will save locally
-          var saveFile = function (data, filename) {
-            var save_link = document.createElementNS(
-              'http://www.w3.org/1999/xhtml',
-              'a'
-            )
-            save_link.href = data
-            save_link.download = filename
+            var image = canvas
+              .toDataURL('image/png')
+              .replace('image/png', 'image/octet-stream')
 
-            var event = document.createEvent('MouseEvents')
-            event.initMouseEvent(
-              'click',
-              true,
-              false,
-              window,
-              0,
-              0,
-              0,
-              0,
-              0,
-              false,
-              false,
-              false,
-              false,
-              0,
-              null
-            )
-            save_link.dispatchEvent(event)
-          }
-          // 下载后的问题名
-          var filename = '流程图' + new Date().getTime() + '.png'
-          // download
-          saveFile(image, filename)
+            // 下载后的问题名
+            var filename = '流程图' + new Date().getTime() + '.png'
+            // download
+            this.saveFile(image, filename)
         })
+      },
+      saveFile(data, filename) {
+        var save_link = document.createElementNS(
+          'http://www.w3.org/1999/xhtml',
+          'a'
+        )
+        save_link.href = data
+        save_link.download = filename
+
+        var event = document.createEvent('MouseEvents')
+        event.initMouseEvent(  //模拟鼠标事件
+          'click',
+          true,
+          false,
+          window,
+          0,
+          0,
+          0,
+          0,
+          0,
+          false,
+          false,
+          false,
+          false,
+          0,
+          null
+        )
+        save_link.dispatchEvent(event)
       },
 
       //新增模板
@@ -919,7 +923,7 @@
   }
 </script>
 <style lang="scss" scoped>
-  @import "../../assets/style/index.scss";
+  @import "../../../assets/style/index";
 
    .template-list {
     padding: 5px;
@@ -975,7 +979,7 @@
     border-top-right-radius:5px;
     p {
       display: block;
-      background: url('../../assets/images/Bd-1.png')  no-repeat;
+      background: url('../../../assets/images/Bd-1.png')  no-repeat;
       background-color: #EFF4f8;
       background-size: 17px 17px;
       background-position: 7px 10px;
@@ -991,7 +995,7 @@
     &:hover{
       border: 1px solid #5c96bc;
       p{
-        background: url('../../assets/images/Bd.png') no-repeat;
+        background: url('../../../assets/images/Bd.png') no-repeat;
         padding: 10px 10px 10px 28px;
         background-size: 17px 17px;
         background-position: 7px 10px;
