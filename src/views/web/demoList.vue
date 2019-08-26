@@ -20,10 +20,10 @@
       <jsplumb-demo4 v-if="showCom === 4"></jsplumb-demo4>
       <jsplumb-demo5 v-if="showCom === 5"></jsplumb-demo5>
       <jsplumb-demo6 v-if="showCom === 6"></jsplumb-demo6>
-      <jsplumb-demo6 v-if="showCom === 7"></jsplumb-demo6>
-      <jsplumb-demo6 v-if="showCom === 8"></jsplumb-demo6>
-      <jsplumb-demo6 v-if="showCom === 9"></jsplumb-demo6>
-      <jsplumb-demo6 v-if="showCom === 10"></jsplumb-demo6>
+      <jsplumb-demo7 v-if="showCom === 7"></jsplumb-demo7>
+      <jsplumb-demo8 v-if="showCom === 8"></jsplumb-demo8>
+      <jsplumb-demo9 v-if="showCom === 9"></jsplumb-demo9>
+      <jsplumb-demo10 v-if="showCom === 10"></jsplumb-demo10>
     </div>
   </div>
 </template>
