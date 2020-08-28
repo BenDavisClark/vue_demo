@@ -1,5 +1,7 @@
 import { login, logout, getInfo } from '@/api/login'
 import { getToken, setToken, removeToken, getID, setID, removeID, getAccount, setAccount, removeAccount } from '@/utils/auth'
+import mockData from '@/mock/login.js'
+import mockData1 from '@/mock/user.js'
 const user = {
   state: {
     token: getToken(),
@@ -36,34 +38,49 @@ const user = {
     Login ({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
-          const data = response
-          setToken(data.token)
-          setID(data.JSESSIONID)
-          setAccount(data.account)
-          commit('SET_TOKEN', data.token)
-          commit('SET_JSESSIONID', data.JSESSIONID)
-          commit('SET_ACCOUNT', data.account)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        const data = mockData.response.data
+        setToken(data.token)
+        setID(data.JSESSIONID)
+        setAccount(data.account)
+        commit('SET_TOKEN', data.token)
+        commit('SET_JSESSIONID', data.JSESSIONID)
+        commit('SET_ACCOUNT', data.account)
+        resolve()
+        // login(username, userInfo.password).then(response => {
+        //   //const data = response
+        //   setToken(data.token)
+        //   setID(data.JSESSIONID)
+        //   setAccount(data.account)
+        //   commit('SET_TOKEN', data.token)
+        //   commit('SET_JSESSIONID', data.JSESSIONID)
+        //   commit('SET_ACCOUNT', data.account)
+        //   resolve()
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 
     // 获取用户信息
     GetInfo ({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo().then(response => {
-          const data = response
-          //commit('SET_ROLES', 'admin')
-          commit('SET_ROLES', data.data.role)
-          commit('SET_NAME', data.data.name)
-          //commit('SET_AVATAR', data.avatar)
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
+        const data = mockData1.response
+        //commit('SET_ROLES', 'admin')
+        commit('SET_ROLES', data.data.role)
+        commit('SET_NAME', data.data.name)
+        //commit('SET_AVATAR', data.avatar)
+        resolve(data)
+
+        // getInfo().then(response => {
+        //   const data = response
+        //   //commit('SET_ROLES', 'admin')
+        //   commit('SET_ROLES', data.data.role)
+        //   commit('SET_NAME', data.data.name)
+        //   //commit('SET_AVATAR', data.avatar)
+        //   resolve(response)
+        // }).catch(error => {
+        //   reject(error)
+        // })
       })
     },
 

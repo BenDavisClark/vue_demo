@@ -14,10 +14,8 @@ router.beforeEach((to, from, next) => {
     } else {
       if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
         store.dispatch('GetInfo').then(res => { // 拉取user_info
-          //console.log(res.data)
           const rowrouter = res.data.param
           store.dispatch('GenerateRoutes', { rowrouter }).then(() => { // 根据roles权限生成可访问的路由表
-            console.log(store.getters.addRouters)
             router.addRoutes(store.getters.addRouters) // 动态添加可访问路由表
             next({ ...to }) // 页面跳转
           })

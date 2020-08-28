@@ -86,12 +86,12 @@ export const constantRouterMap = [
     icon: 'jichuguanli',
     meta: { title: '导航一' },
     children: [
-      //{ path: 'FlowDiagram', name: 'FlowDiagram', component: _import('/test/FlowDiagram'),meta: { title: '流程图' }},
-      //{ path: 'FlowDiagram', name: 'FlowDiagram', component: _import('/test/FlowDiagram'),meta: { title: '流程图' }},
-      { path: 'FlowDiagram1', name: 'FlowDiagram1', component: _import('/web/FlowDiagram1'),meta: { title: '流程图1' }},
-      { path: 'demoList', name: '流程图demo', component: _import('/web/demoList'),meta: { title: '流程图demo' }},
-      //{ path: 'echartsGraph', name: 'echartsGraph', component: _import('/test/echartsGraph'),meta: { title: 'echartsGraph' }},
-      //{ path: 'echartsDemo1', name: 'echartsDemo', component: _import('/test/echartsDemo1'),meta: { title: 'echartsDemo' }}
+      // { path: 'FlowDiagram', name: 'FlowDiagram', component: _import('/test/FlowDiagram'),meta: { title: '流程图' } },
+      // { path: 'FlowDiagram', name: 'FlowDiagram', component: _import('/test/FlowDiagram'),meta: { title: '流程图' } },
+      { path: 'FlowDiagram1', name: 'FlowDiagram1', component: _import('/web/FlowDiagram1'), meta: { title: '流程图1' } },
+      { path: 'demoList', name: '流程图demo', component: _import('/web/demoList'), meta: { title: '流程图demo' } },
+      // { path: 'echartsGraph', name: 'echartsGraph', component: _import('/test/echartsGraph'),meta: { title: 'echartsGraph' }},
+      // { path: 'echartsDemo1', name: 'echartsDemo', component: _import('/test/echartsDemo1'),meta: { title: 'echartsDemo' }}
     ]
   },
   {
@@ -103,8 +103,8 @@ export const constantRouterMap = [
     hidden: true,
     meta: { title: '本地路由' },
     children: [
-      { path: 'list/Detail',name:"编辑",component: _import('/test/Detail'),meta: { title: '编辑' } },
-      { path: 'list/add',name:"新增",component: _import('/test/add'),meta: { title: '新增' } }
+      { path: 'list/Detail', name:"编辑", component: _import('/test/Detail'), meta: { title: '编辑' } },
+      { path: 'list/add', name:"新增", component: _import('/test/add'), meta: { title: '新增' } }
     ]
   }
 ]
