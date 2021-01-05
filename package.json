@@ -14,7 +14,7 @@
     "dll": "webpack --config build/webpack.dll.conf.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "canvg": "^3.0.6",
     "crypto-js": "^3.1.9-1",
